@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:EDP_Project.Models"
              x:Class="EDP_Project.BooksPage"
              Title="Books">
 
@@ -12,17 +13,80 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Button Text="Authors" Clicked="OnAuthorsClicked" />
-                    <Button Text="Books" Clicked="OnBooksClicked" />
-                    <Button Text="Categories" Clicked="OnCategoriesClicked" />
-                    <Button Text="Employees" Clicked="OnEmployeesClicked" />
-                    <Button Text="Loans" Clicked="OnLoansClicked" />
-                    <Button Text="Members" Clicked="OnMembersClicked" />
-                    <Button Text="Publishers" Clicked="OnPublishersClicked" />
-                </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Authors" Clicked="OnAuthorsClicked" />
+                <Button Text="Books" Clicked="OnBooksClicked" />
+                <Button Text="Categories" Clicked="OnCategoriesClicked" />
+                <Button Text="Employees" Clicked="OnEmployeesClicked" />
+                <Button Text="Loans" Clicked="OnLoansClicked" />
+                <Button Text="Members" Clicked="OnMembersClicked" />
+                <Button Text="Publishers" Clicked="OnPublishersClicked" />
+            </HorizontalStackLayout>
 
-            <!-- Add page-specific content here -->
+            <Label Text="Books List" 
+                   FontSize="20" 
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10"/>
+            
+            <Label x:Name="BookCountLabel" 
+                   Text="Books: 0" 
+                   FontSize="16"
+                   HorizontalOptions="Start" 
+                   Margin="0,0,0,5"/>
+        
+            <Frame BorderColor="Gray" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Header -->
+                    <Grid Grid.Row="0" Padding="5" ColumnDefinitions="50,*,80,80,60,80,60" BackgroundColor="LightGray">
+                        <Label Text="ID" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Title" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Author ID" FontAttributes="Bold" Grid.Column="2" />
+                        <Label Text="Publisher ID" FontAttributes="Bold" Grid.Column="3" />
+                        <Label Text="Year" FontAttributes="Bold" Grid.Column="4" />
+                        <Label Text="Price" FontAttributes="Bold" Grid.Column="5" />
+                        <Label Text="Copies" FontAttributes="Bold" Grid.Column="6" />
+                    </Grid>
+                    
+                    <!-- List -->
+                    <ListView x:Name="BooksListView" 
+                              Grid.Row="1"
+                              HasUnevenRows="True" 
+                              SeparatorVisibility="Default"
+                              SelectionMode="None"
+                              Header="">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Book">
+                                <ViewCell>
+                                    <Grid Padding="5" ColumnDefinitions="50,*,80,80,60,80,60">
+                                        <Label Text="{Binding BookId}" Grid.Column="0" />
+                                        <Label Text="{Binding Title}" Grid.Column="1" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding AuthorId}" Grid.Column="2" HorizontalOptions="Center" />
+                                        <Label Text="{Binding PublisherId}" Grid.Column="3" HorizontalOptions="Center" />
+                                        <Label Text="{Binding PublicationYear}" Grid.Column="4" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Price, StringFormat='${0:F2}'}" Grid.Column="5" HorizontalOptions="End" />
+                                        <Label Text="{Binding AvailableCopies}" Grid.Column="6" HorizontalOptions="Center" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Frame>
+
+            <Button Text="Refresh Data" 
+                    Clicked="OnRefreshClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"/>
+
+            <Button Text="Test Connection" 
+                    Clicked="OnTestConnectionClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"/>
 
         </VerticalStackLayout>
     </ScrollView>
