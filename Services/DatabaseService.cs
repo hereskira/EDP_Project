@@ -371,4 +371,71 @@ public class DatabaseService
             throw;
         }
     }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    public async Task<User> AuthenticateUserAsync(string username, string password)
+    {
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine($"Attempting to authenticate user: {username}");
+            await connection.OpenAsync();
+            
+            string query = "SELECT user_id, username, full_name, email, last_login FROM Users " +
+                          "WHERE username = @Username AND password = @Password";
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Username", username);
+            command.Parameters.AddWithValue("@Password", password);
+            
+            using var reader = await command.ExecuteReaderAsync();
+            
+            if (await reader.ReadAsync())
+            {
+                User user = new User
+                {
+                    UserId = reader.GetInt32("user_id"),
+                    Username = reader.GetString("username"),
+                    FullName = reader.IsDBNull(reader.GetOrdinal("full_name")) ? string.Empty : reader.GetString("full_name"),
+                    Email = reader.IsDBNull(reader.GetOrdinal("email")) ? string.Empty : reader.GetString("email"),
+                    LastLogin = reader.IsDBNull(reader.GetOrdinal("last_login")) ? null : reader.GetDateTime("last_login")
+                };
+                
+                // Update the last login time
+                await UpdateLastLoginTimeAsync(user.UserId);
+                
+                Debug.WriteLine($"User authenticated successfully: {user.Username}");
+                return user;
+            }
+            
+            Debug.WriteLine("Authentication failed: Invalid credentials");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Authentication error: {ex.Message}");
+            throw;
+        }
+    }
+    
+    private async Task UpdateLastLoginTimeAsync(int userId)
+    {
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+            
+            string query = "UPDATE Users SET last_login = NOW() WHERE user_id = @UserId";
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserId", userId);
+            
+            await command.ExecuteNonQueryAsync();
+            Debug.WriteLine($"Updated last login time for user ID: {userId}");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error updating last login time: {ex.Message}");
+        }
+    }
 }

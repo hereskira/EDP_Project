@@ -2,13 +2,78 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EDP_Project.LoginPage"
-             Title="Login">
+             Title="Login"
+             BackgroundColor="#f5f5f5">
 
-    <VerticalStackLayout Padding="30" Spacing="15">
-        <Label Text="Login Page" FontSize="24" HorizontalOptions="Center" />
-        <Entry Placeholder="Username" />
-        <Entry Placeholder="Password" IsPassword="True" />
-        <Button Text="Login" Clicked="OnLoginConfirmed" />
-    </VerticalStackLayout>
+    <Grid Padding="30" VerticalOptions="Center">
+        <!-- Header -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10" Margin="0,0,0,20">
+            <Label Text="Library Management System" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Label Text="Login" 
+                   FontSize="18" 
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Login Form -->
+        <Frame Grid.Row="1" 
+               Padding="20"
+               BorderColor="#e0e0e0"
+               HasShadow="True"
+               CornerRadius="10">
+            <VerticalStackLayout Spacing="15">
+                <!-- Username -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Username" FontSize="Medium" />
+                    <Entry x:Name="UsernameEntry" 
+                           Placeholder="Enter your username" />
+                </VerticalStackLayout>
+                
+                <!-- Password -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Password" FontSize="Medium" />
+                    <Entry x:Name="PasswordEntry" 
+                           Placeholder="Enter your password" 
+                           IsPassword="True" />
+                </VerticalStackLayout>
+                
+                <!-- Error Message -->
+                <Label x:Name="ErrorMessage"
+                       TextColor="Red"
+                       HorizontalOptions="Center"
+                       IsVisible="False" />
+                
+                <!-- Login Button -->
+                <Button Text="Login"
+                        x:Name="LoginButton" 
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="#2196F3"
+                        TextColor="White" />
+                
+                <!-- Activity Indicator -->
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsRunning="False"
+                                   IsVisible="False"
+                                   HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Frame>
+        
+        <!-- Test account info -->
+        <Label Grid.Row="2"
+               Text="Default Account: username = admin, password = pass"
+               HorizontalOptions="Center" 
+               FontSize="Small"
+               TextColor="Gray"
+               Margin="0,15,0,0" />
+    </Grid>
 </ContentPage>
