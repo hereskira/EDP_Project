@@ -146,6 +146,11 @@ public partial class CategoriesPage : ContentPage
         await LoadCategoriesDataAsync();
     }
 
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        await this.LogoutAsync(); // Use extension method on "this" page
+    }
+
     private async void OnAuthorsClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AuthorsPage());

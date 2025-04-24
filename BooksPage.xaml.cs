@@ -151,24 +151,7 @@ public partial class BooksPage : ContentPage
         // Add this method to your BooksPage class
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        // Ask for confirmation
-        bool confirmed = await DisplayAlert(
-            "Logout Confirmation", 
-            "Are you sure you want to log out?", 
-            "Yes", 
-            "No");
-        
-        if (confirmed)
-        {
-            // Clear the current user session
-            UserSession.Logout();
-            
-            // Navigate back to login page
-            Application.Current.MainPage = new NavigationPage(new LoginPage());
-            
-            // Optionally show a toast or message
-            Debug.WriteLine("User logged out successfully");
-        }
+        await this.LogoutAsync(); // Use extension method on "this" page
     }
 
     private async void OnAuthorsClicked(object sender, EventArgs e)
