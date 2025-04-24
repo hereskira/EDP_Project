@@ -166,4 +166,109 @@ public class DatabaseService
             throw;
         }
     }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    public async Task<ObservableCollection<Employee>> GetEmployeesAsync()
+    {
+        ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine("Attempting to connect to database for employees...");
+            await connection.OpenAsync();
+            Debug.WriteLine("Database connection opened successfully");
+            
+            string query = "SELECT employee_id, first_name, last_name, role, hire_date FROM Employees";
+            Debug.WriteLine($"Executing query: {query}");
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            int count = 0;
+            while (await reader.ReadAsync())
+            {
+                count++;
+                Employee employee = new Employee
+                {
+                    EmployeeId = reader.GetInt32("employee_id"),
+                    FirstName = reader.IsDBNull(reader.GetOrdinal("first_name")) ? string.Empty : reader.GetString("first_name"),
+                    LastName = reader.IsDBNull(reader.GetOrdinal("last_name")) ? string.Empty : reader.GetString("last_name"),
+                    Role = reader.IsDBNull(reader.GetOrdinal("role")) ? string.Empty : reader.GetString("role"),
+                    HireDate = reader.IsDBNull(reader.GetOrdinal("hire_date")) ? DateTime.MinValue : reader.GetDateTime("hire_date")
+                };
+                
+                employees.Add(employee);
+                Debug.WriteLine($"Added employee: {employee.EmployeeId} - {employee.FirstName} {employee.LastName}");
+            }
+            
+            Debug.WriteLine($"Total employees retrieved: {count}");
+            return employees;
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine($"MySQL error: {ex.Message}");
+            Debug.WriteLine($"Error code: {ex.Number}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"General error: {ex.Message}");
+            throw;
+        }
+    }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    public async Task<ObservableCollection<Loan>> GetLoansAsync()
+    {
+        ObservableCollection<Loan> loans = new ObservableCollection<Loan>();
+        
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine("Attempting to connect to database for loans...");
+            await connection.OpenAsync();
+            Debug.WriteLine("Database connection opened successfully");
+            
+            string query = "SELECT loan_id, member_id, book_id, employee_id, loan_date, due_date, is_paid, is_overdue FROM Loans";
+            Debug.WriteLine($"Executing query: {query}");
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            int count = 0;
+            while (await reader.ReadAsync())
+            {
+                count++;
+                Loan loan = new Loan
+                {
+                    LoanId = reader.GetInt32("loan_id"),
+                    MemberId = reader.GetInt32("member_id"),
+                    BookId = reader.GetInt32("book_id"),
+                    EmployeeId = reader.GetInt32("employee_id"),
+                    LoanDate = reader.GetDateTime("loan_date"),
+                    DueDate = reader.GetDateTime("due_date"),
+                    IsPaid = reader.GetBoolean("is_paid"),
+                    IsOverdue = reader.GetBoolean("is_overdue")
+                };
+                
+                loans.Add(loan);
+                Debug.WriteLine($"Added loan: {loan.LoanId} - Book: {loan.BookId}, Member: {loan.MemberId}");
+            }
+            
+            Debug.WriteLine($"Total loans retrieved: {count}");
+            return loans;
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine($"MySQL error: {ex.Message}");
+            Debug.WriteLine($"Error code: {ex.Number}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"General error: {ex.Message}");
+            throw;
+        }
+    }
 }
