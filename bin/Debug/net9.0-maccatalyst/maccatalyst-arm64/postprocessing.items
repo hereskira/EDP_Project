@@ -8,9 +8,9 @@
       <dSYMSourcePathExists>false</dSYMSourcePathExists>
       <NoSymbolStrip>true</NoSymbolStrip>
       <dSYMInfoPlistRelativePath>EDP_Project.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
-      <SymbolFile>/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
+      <SymbolFile>/Users/shakiraregalado/Downloads/EDP_Project/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
       <DSymName>EDP_Project.app.dSYM</DSymName>
-      <SourceProjectPath>/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project</SourceProjectPath>
+      <SourceProjectPath>/Users/shakiraregalado/Downloads/EDP_Project</SourceProjectPath>
       <IsXPCService></IsXPCService>
     </_PostProcessingItem>
   </ItemGroup>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/EDP_Project.csproj": {}
+    "/Users/shakiraregalado/Downloads/EDP_Project/EDP_Project.csproj": {}
   },
   "projects": {
-    "/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/EDP_Project.csproj": {
+    "/Users/shakiraregalado/Downloads/EDP_Project/EDP_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/EDP_Project.csproj",
+        "projectUniqueName": "/Users/shakiraregalado/Downloads/EDP_Project/EDP_Project.csproj",
         "projectName": "EDP_Project",
-        "projectPath": "/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/EDP_Project.csproj",
+        "projectPath": "/Users/shakiraregalado/Downloads/EDP_Project/EDP_Project.csproj",
         "packagesPath": "/Users/shakiraregalado/.nuget/packages/",
-        "outputPath": "/Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/obj/",
+        "outputPath": "/Users/shakiraregalado/Downloads/EDP_Project/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
