@@ -85,4 +85,85 @@ public class DatabaseService
             return false;
         }
     }
+
+        // Add this method to your DatabaseService.cs file
+    public async Task<List<Author>> GetAuthorsAsync()
+    {
+        List<Author> authors = new();
+        try
+        {
+            using var connection = new MySqlConnection(ConnectionString);
+            await connection.OpenAsync();
+            
+            string sql = "SELECT author_id, name, biography FROM Authors";
+            using var command = new MySqlCommand(sql, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            while (await reader.ReadAsync())
+            {
+                authors.Add(new Author
+                {
+                    AuthorId = reader.GetInt32("author_id"),
+                    Name = reader.GetString("name"),
+                    Biography = reader.IsDBNull(reader.GetOrdinal("biography")) ? string.Empty : reader.GetString("biography")
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error getting authors: {ex.Message}");
+            throw;
+        }
+        
+        return authors;
+    }
+
+        // Add this method to your DatabaseService class
+    public async Task<ObservableCollection<Category>> GetCategoriesAsync()
+    {
+        ObservableCollection<Category> categories = new ObservableCollection<Category>();
+        
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine("Attempting to connect to database for categories...");
+            await connection.OpenAsync();
+            Debug.WriteLine("Database connection opened successfully");
+            
+            string query = "SELECT category_id, name, description FROM Categories";
+            Debug.WriteLine($"Executing query: {query}");
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            int count = 0;
+            while (await reader.ReadAsync())
+            {
+                count++;
+                Category category = new Category
+                {
+                    CategoryId = reader.GetInt32("category_id"),
+                    Name = reader.IsDBNull(reader.GetOrdinal("name")) ? string.Empty : reader.GetString("name"),
+                    Description = reader.IsDBNull(reader.GetOrdinal("description")) ? string.Empty : reader.GetString("description")
+                };
+                
+                categories.Add(category);
+                Debug.WriteLine($"Added category: {category.CategoryId} - {category.Name}");
+            }
+            
+            Debug.WriteLine($"Total categories retrieved: {count}");
+            return categories;
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine($"MySQL error: {ex.Message}");
+            Debug.WriteLine($"Error code: {ex.Number}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"General error: {ex.Message}");
+            throw;
+        }
+    }
 }
