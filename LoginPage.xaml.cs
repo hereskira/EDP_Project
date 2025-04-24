@@ -85,4 +85,12 @@ public partial class LoginPage : ContentPage
         LoadingIndicator.IsRunning = isLoading;
         LoadingIndicator.IsVisible = isLoading;
     }
+
+		// Add to: /Users/shakiraregalado/Downloads/EDP_Project/LoginPage.xaml.cs
+	
+	// Add this handler for the Forgot Password link
+	private async void OnForgotPasswordTapped(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new ForgotPasswordPage());
+	}
 }

@@ -438,4 +438,94 @@ public class DatabaseService
             Debug.WriteLine($"Error updating last login time: {ex.Message}");
         }
     }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    
+    // Check if the email exists in the database
+    public async Task<bool> ValidateUserEmailAsync(string email)
+    {
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+            
+            string query = "SELECT COUNT(*) FROM Users WHERE email = @Email";
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Email", email);
+            
+            long count = (long)await command.ExecuteScalarAsync();
+            
+            return count > 0;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Email validation error: {ex.Message}");
+            throw;
+        }
+    }
+    
+    // Get user by email
+    public async Task<User> GetUserByEmailAsync(string email)
+    {
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+            
+            string query = "SELECT user_id, username, full_name, email, security_question, security_answer FROM Users WHERE email = @Email";
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Email", email);
+            
+            using var reader = await command.ExecuteReaderAsync();
+            
+            if (await reader.ReadAsync())
+            {
+                User user = new User
+                {
+                    UserId = reader.GetInt32("user_id"),
+                    Username = reader.GetString("username"),
+                    FullName = reader.IsDBNull(reader.GetOrdinal("full_name")) ? string.Empty : reader.GetString("full_name"),
+                    Email = reader.GetString("email"),
+                    SecurityQuestion = reader.IsDBNull(reader.GetOrdinal("security_question")) ? string.Empty : reader.GetString("security_question"),
+                    SecurityAnswer = reader.IsDBNull(reader.GetOrdinal("security_answer")) ? string.Empty : reader.GetString("security_answer")
+                };
+                
+                return user;
+            }
+            
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error getting user by email: {ex.Message}");
+            throw;
+        }
+    }
+    
+    // Reset user password
+    public async Task<bool> ResetPasswordAsync(string email, string newPassword)
+    {
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+            
+            string query = "UPDATE Users SET password = @NewPassword WHERE email = @Email";
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NewPassword", newPassword);
+            command.Parameters.AddWithValue("@Email", email);
+            
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Password reset error: {ex.Message}");
+            throw;
+        }
+    }
 }

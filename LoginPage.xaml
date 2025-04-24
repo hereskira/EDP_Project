@@ -60,6 +60,16 @@
                         BackgroundColor="#2196F3"
                         TextColor="White" />
                 
+                <!-- Forgot Password Link -->
+                <Label Text="Forgot Password?"
+                       TextColor="#2196F3"
+                       HorizontalOptions="Center"
+                       FontSize="14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnForgotPasswordTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
                 <!-- Activity Indicator -->
                 <ActivityIndicator x:Name="LoadingIndicator"
                                    IsRunning="False"
@@ -70,7 +80,7 @@
         
         <!-- Test account info -->
         <Label Grid.Row="2"
-               Text="Default Account: username = admin, password = pass"
+               Text="Default Account: username = admin, password = password"
                HorizontalOptions="Center" 
                FontSize="Small"
                TextColor="Gray"
