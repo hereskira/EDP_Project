@@ -271,4 +271,104 @@ public class DatabaseService
             throw;
         }
     }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    public async Task<ObservableCollection<Member>> GetMembersAsync()
+    {
+        ObservableCollection<Member> members = new ObservableCollection<Member>();
+        
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine("Attempting to connect to database for members...");
+            await connection.OpenAsync();
+            Debug.WriteLine("Database connection opened successfully");
+            
+            string query = "SELECT member_id, first_name, last_name, date_of_birth, email FROM Members";
+            Debug.WriteLine($"Executing query: {query}");
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            int count = 0;
+            while (await reader.ReadAsync())
+            {
+                count++;
+                Member member = new Member
+                {
+                    MemberId = reader.GetInt32("member_id"),
+                    FirstName = reader.IsDBNull(reader.GetOrdinal("first_name")) ? string.Empty : reader.GetString("first_name"),
+                    LastName = reader.IsDBNull(reader.GetOrdinal("last_name")) ? string.Empty : reader.GetString("last_name"),
+                    DateOfBirth = reader.IsDBNull(reader.GetOrdinal("date_of_birth")) ? DateTime.MinValue : reader.GetDateTime("date_of_birth"),
+                    Email = reader.IsDBNull(reader.GetOrdinal("email")) ? string.Empty : reader.GetString("email")
+                };
+                
+                members.Add(member);
+                Debug.WriteLine($"Added member: {member.MemberId} - {member.FirstName} {member.LastName}");
+            }
+            
+            Debug.WriteLine($"Total members retrieved: {count}");
+            return members;
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine($"MySQL error: {ex.Message}");
+            Debug.WriteLine($"Error code: {ex.Number}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"General error: {ex.Message}");
+            throw;
+        }
+    }
+
+        // Add to: /Users/shakiraregalado/Downloads/EDP_Project/Services/DatabaseService.cs
+    public async Task<ObservableCollection<Publisher>> GetPublishersAsync()
+    {
+        ObservableCollection<Publisher> publishers = new ObservableCollection<Publisher>();
+        
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            Debug.WriteLine("Attempting to connect to database for publishers...");
+            await connection.OpenAsync();
+            Debug.WriteLine("Database connection opened successfully");
+            
+            string query = "SELECT publisher_id, name, address FROM Publishers";
+            Debug.WriteLine($"Executing query: {query}");
+            
+            using MySqlCommand command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            
+            int count = 0;
+            while (await reader.ReadAsync())
+            {
+                count++;
+                Publisher publisher = new Publisher
+                {
+                    PublisherId = reader.GetInt32("publisher_id"),
+                    Name = reader.IsDBNull(reader.GetOrdinal("name")) ? string.Empty : reader.GetString("name"),
+                    Address = reader.IsDBNull(reader.GetOrdinal("address")) ? string.Empty : reader.GetString("address")
+                };
+                
+                publishers.Add(publisher);
+                Debug.WriteLine($"Added publisher: {publisher.PublisherId} - {publisher.Name}");
+            }
+            
+            Debug.WriteLine($"Total publishers retrieved: {count}");
+            return publishers;
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine($"MySQL error: {ex.Message}");
+            Debug.WriteLine($"Error code: {ex.Number}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"General error: {ex.Message}");
+            throw;
+        }
+    }
 }

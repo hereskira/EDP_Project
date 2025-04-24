@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:EDP_Project.Models"
              x:Class="EDP_Project.MembersPage"
              Title="Members">
 
@@ -22,9 +23,67 @@
                     <Button Text="Publishers" Clicked="OnPublishersClicked" />
                 </HorizontalStackLayout>
 
-            <!-- Add page-specific content here -->
+            <Label Text="Members List" 
+                   FontSize="20" 
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10"/>
+            
+            <Label x:Name="MemberCountLabel" 
+                   Text="Members: 0" 
+                   FontSize="16"
+                   HorizontalOptions="Start" 
+                   Margin="0,0,0,5"/>
+        
+            <Frame BorderColor="Gray" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Header -->
+                    <Grid Grid.Row="0" Padding="5" ColumnDefinitions="50,*,*,100,*" BackgroundColor="LightGray">
+                        <Label Text="ID" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="First Name" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Last Name" FontAttributes="Bold" Grid.Column="2" />
+                        <Label Text="Date of Birth" FontAttributes="Bold" Grid.Column="3" />
+                        <Label Text="Email" FontAttributes="Bold" Grid.Column="4" />
+                    </Grid>
+                    
+                    <!-- List -->
+                    <ListView x:Name="MembersListView" 
+                              Grid.Row="1"
+                              HasUnevenRows="True" 
+                              SeparatorVisibility="Default"
+                              SelectionMode="None"
+                              Header="">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Member">
+                                <ViewCell>
+                                    <Grid Padding="5" ColumnDefinitions="50,*,*,100,*">
+                                        <Label Text="{Binding MemberId}" Grid.Column="0" />
+                                        <Label Text="{Binding FirstName}" Grid.Column="1" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding LastName}" Grid.Column="2" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding DateOfBirth, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="3" />
+                                        <Label Text="{Binding Email}" Grid.Column="4" LineBreakMode="TailTruncation"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Frame>
+
+            <Button Text="Refresh Data" 
+                    Clicked="OnRefreshClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"/>
+
+            <Button Text="Test Connection" 
+                    Clicked="OnTestConnectionClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"/>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
