@@ -1,1 +1,0 @@
--v --force --timestamp=none --sign - --entitlements /Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/shakiraregalado/Desktop/vscode/C#/EDP_Project/bin/Debug/net9.0-maccatalyst/maccatalyst-arm64/EDP_Project.app

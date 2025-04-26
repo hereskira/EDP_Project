@@ -1,0 +1,17 @@
+C:\Users\Admin\Downloads\EDP_Project\bin\Debug\net8.0-windows\EDP_Project.exe
+C:\Users\Admin\Downloads\EDP_Project\bin\Debug\net8.0-windows\EDP_Project.deps.json
+C:\Users\Admin\Downloads\EDP_Project\bin\Debug\net8.0-windows\EDP_Project.runtimeconfig.json
+C:\Users\Admin\Downloads\EDP_Project\bin\Debug\net8.0-windows\EDP_Project.dll
+C:\Users\Admin\Downloads\EDP_Project\bin\Debug\net8.0-windows\EDP_Project.pdb
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.LoginPage.resources
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.AssemblyInfoInputs.cache
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.AssemblyInfo.cs
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.dll
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\refint\EDP_Project.dll
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.pdb
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.genruntimeconfig.cache
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\ref\EDP_Project.dll
+C:\Users\Admin\Downloads\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.LandingPage.resources
