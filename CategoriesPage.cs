@@ -11,29 +11,30 @@ using MySql.Data.MySqlClient;
 
 namespace EDP_Project
 {
-    public partial class BooksPage : Form
+    public partial class CategoriesPage : Form
     {
-        public BooksPage()
+        public CategoriesPage()
         {
             InitializeComponent();
-            Load += BooksPage_Load;
+            Load += CategoriesPage_Load;
             AuthorsButton.Click += AuthorsButton_Click;
-            CategoriesButton.Click += CategoriesButton_Click;
+            BooksButton.Click += BooksButton_Click;
             EmployeesButton.Click += EmployeesButton_Click;
             LoansButton.Click += LoansButton_Click;
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
         }
 
-        private void BooksPage_Load(object sender, EventArgs e)
+        private void CategoriesPage_Load(object sender, EventArgs e)
         {
-            LoadBooksData();
+            LoadCategoriesData();
         }
 
-        private void LoadBooksData()
+
+        private void LoadCategoriesData()
         {
             string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
-            string query = "SELECT book_id, title, author_id, publisher_id, category_id, publication_year, price, available_copies FROM books";
+            string query = "SELECT category_id, name, description FROM categories";
 
             try
             {
@@ -44,22 +45,17 @@ namespace EDP_Project
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
-                            DataTable booksTable = new DataTable();
-                            adapter.Fill(booksTable);
-                            BooksData.DataSource = booksTable; // Bind the data to the DataGridView
+                            DataTable categoriesTable = new DataTable();
+                            adapter.Fill(categoriesTable);
+                            CategoriesData.DataSource = categoriesTable; // Bind the data to the DataGridView
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading books data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while loading categories data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void BooksData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Handle cell click events if needed
         }
 
         private void AuthorsButton_Click(object sender, EventArgs e)
@@ -70,11 +66,11 @@ namespace EDP_Project
             this.Hide();
         }
 
-        private void CategoriesButton_Click(object sender, EventArgs e)
+        private void BooksButton_Click(object sender, EventArgs e)
         {
-            // Navigate to CategoriesPage
-            CategoriesPage categoriesPage = new CategoriesPage();
-            categoriesPage.Show();
+            // Navigate to BooksPage
+            BooksPage booksPage = new BooksPage();
+            booksPage.Show();
             this.Hide();
         }
 

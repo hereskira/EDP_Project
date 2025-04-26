@@ -52,3 +52,9 @@ C:\Users\Admin\Desktop\EDP_Project\bin\Debug\net8.0-windows\runtimes\browser\lib
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.csproj.AssemblyReference.cache
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Proj.ACD393C9.Up2Date
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.BooksPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.AuthorsPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.CategoriesPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.EmployeesPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.LoansPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.MembersPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.PublishersPage.resources

@@ -30,7 +30,13 @@
         {
             BooksData = new DataGridView();
             label1 = new Label();
-            AuthorsPage = new Button();
+            AuthorsButton = new Button();
+            BooksButton = new Button();
+            CategoriesButton = new Button();
+            EmployeesButton = new Button();
+            LoansButton = new Button();
+            MembersButton = new Button();
+            PublishersButton = new Button();
             ((System.ComponentModel.ISupportInitialize)BooksData).BeginInit();
             SuspendLayout();
             // 
@@ -53,21 +59,81 @@
             label1.TabIndex = 1;
             label1.Text = "Library Management System";
             // 
-            // AuthorsPage
+            // AuthorsButton
             // 
-            AuthorsPage.Location = new Point(129, 67);
-            AuthorsPage.Name = "AuthorsPage";
-            AuthorsPage.Size = new Size(75, 23);
-            AuthorsPage.TabIndex = 2;
-            AuthorsPage.Text = "Authors";
-            AuthorsPage.UseVisualStyleBackColor = true;
+            AuthorsButton.Location = new Point(129, 67);
+            AuthorsButton.Name = "AuthorsButton";
+            AuthorsButton.Size = new Size(75, 23);
+            AuthorsButton.TabIndex = 2;
+            AuthorsButton.Text = "Authors";
+            AuthorsButton.UseVisualStyleBackColor = true;
+            // 
+            // BooksButton
+            // 
+            BooksButton.Location = new Point(210, 67);
+            BooksButton.Name = "BooksButton";
+            BooksButton.Size = new Size(75, 23);
+            BooksButton.TabIndex = 3;
+            BooksButton.Text = "Books";
+            BooksButton.UseVisualStyleBackColor = true;
+            // 
+            // CategoriesButton
+            // 
+            CategoriesButton.Location = new Point(291, 67);
+            CategoriesButton.Name = "CategoriesButton";
+            CategoriesButton.Size = new Size(75, 23);
+            CategoriesButton.TabIndex = 4;
+            CategoriesButton.Text = "Categories";
+            CategoriesButton.UseVisualStyleBackColor = true;
+            // 
+            // EmployeesButton
+            // 
+            EmployeesButton.Location = new Point(372, 67);
+            EmployeesButton.Name = "EmployeesButton";
+            EmployeesButton.Size = new Size(75, 23);
+            EmployeesButton.TabIndex = 5;
+            EmployeesButton.Text = "Employees";
+            EmployeesButton.UseVisualStyleBackColor = true;
+            // 
+            // LoansButton
+            // 
+            LoansButton.Location = new Point(453, 67);
+            LoansButton.Name = "LoansButton";
+            LoansButton.Size = new Size(75, 23);
+            LoansButton.TabIndex = 6;
+            LoansButton.Text = "Loans";
+            LoansButton.UseVisualStyleBackColor = true;
+            // 
+            // MembersButton
+            // 
+            MembersButton.Location = new Point(534, 67);
+            MembersButton.Name = "MembersButton";
+            MembersButton.Size = new Size(75, 23);
+            MembersButton.TabIndex = 7;
+            MembersButton.Text = "Members";
+            MembersButton.UseVisualStyleBackColor = true;
+            // 
+            // PublishersButton
+            // 
+            PublishersButton.Location = new Point(615, 67);
+            PublishersButton.Name = "PublishersButton";
+            PublishersButton.Size = new Size(75, 23);
+            PublishersButton.TabIndex = 8;
+            PublishersButton.Text = "Publishers";
+            PublishersButton.UseVisualStyleBackColor = true;
             // 
             // BooksPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(AuthorsPage);
+            Controls.Add(PublishersButton);
+            Controls.Add(MembersButton);
+            Controls.Add(LoansButton);
+            Controls.Add(EmployeesButton);
+            Controls.Add(CategoriesButton);
+            Controls.Add(BooksButton);
+            Controls.Add(AuthorsButton);
             Controls.Add(label1);
             Controls.Add(BooksData);
             Name = "BooksPage";
@@ -81,6 +147,12 @@
 
         private DataGridView BooksData;
         private Label label1;
-        private Button AuthorsPage;
+        private Button AuthorsButton;
+        private Button BooksButton;
+        private Button CategoriesButton;
+        private Button EmployeesButton;
+        private Button LoansButton;
+        private Button MembersButton;
+        private Button PublishersButton;
     }
 }
