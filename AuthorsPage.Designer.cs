@@ -135,6 +135,8 @@
             Controls.Add(AuthorsButton);
             Controls.Add(label1);
             Controls.Add(AuthorsData);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AuthorsPage";
             Text = "Authors";
             Load += AuthorsPage_Load_1;

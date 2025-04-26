@@ -136,6 +136,8 @@
             Controls.Add(AuthorsButton);
             Controls.Add(label1);
             Controls.Add(BooksData);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "BooksPage";
             Text = "Books";
             ((System.ComponentModel.ISupportInitialize)BooksData).EndInit();

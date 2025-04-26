@@ -110,6 +110,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(groupBox1);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginPage";
             Text = "Login Page";
             Load += LoginPage_Load;
