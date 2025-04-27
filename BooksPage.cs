@@ -23,6 +23,7 @@ namespace EDP_Project
             LoansButton.Click += LoansButton_Click;
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
+            RefreshButton.Click += RefreshButton_Click;
         }
 
         private void BooksPage_Load(object sender, EventArgs e)
@@ -119,5 +120,16 @@ namespace EDP_Project
             publishersPage.Show();
             this.Hide();
         }
+        private void AddBookButton_Click(object sender, EventArgs e)
+        {
+            // Launch AddBooksPage without hiding the current page
+            AddBooksPage addBooksPage = new AddBooksPage();
+            addBooksPage.Show();
+        }
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            LoadBooksData(); // Reload the data in the DataGridView
+        }
+
     }
 }

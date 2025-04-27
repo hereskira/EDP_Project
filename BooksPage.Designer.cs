@@ -37,13 +37,17 @@
             LoansButton = new Button();
             MembersButton = new Button();
             PublishersButton = new Button();
+            AddBookButton = new Button();
+            groupBox1 = new GroupBox();
+            RefreshButton = new Button();
             ((System.ComponentModel.ISupportInitialize)BooksData).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // BooksData
             // 
             BooksData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            BooksData.Location = new Point(76, 115);
+            BooksData.Location = new Point(29, 52);
             BooksData.Name = "BooksData";
             BooksData.Size = new Size(686, 304);
             BooksData.TabIndex = 0;
@@ -122,11 +126,43 @@
             PublishersButton.Text = "Publishers";
             PublishersButton.UseVisualStyleBackColor = true;
             // 
+            // AddBookButton
+            // 
+            AddBookButton.Location = new Point(29, 23);
+            AddBookButton.Name = "AddBookButton";
+            AddBookButton.Size = new Size(75, 23);
+            AddBookButton.TabIndex = 9;
+            AddBookButton.Text = "Add New";
+            AddBookButton.UseVisualStyleBackColor = true;
+            AddBookButton.Click += AddBookButton_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(RefreshButton);
+            groupBox1.Controls.Add(BooksData);
+            groupBox1.Controls.Add(AddBookButton);
+            groupBox1.Location = new Point(28, 96);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(749, 372);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Books Table";
+            // 
+            // RefreshButton
+            // 
+            RefreshButton.Location = new Point(110, 23);
+            RefreshButton.Name = "RefreshButton";
+            RefreshButton.Size = new Size(88, 23);
+            RefreshButton.TabIndex = 10;
+            RefreshButton.Text = "Refresh Table";
+            RefreshButton.UseVisualStyleBackColor = true;
+            // 
             // BooksPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 480);
+            Controls.Add(groupBox1);
             Controls.Add(PublishersButton);
             Controls.Add(MembersButton);
             Controls.Add(LoansButton);
@@ -135,13 +171,13 @@
             Controls.Add(BooksButton);
             Controls.Add(AuthorsButton);
             Controls.Add(label1);
-            Controls.Add(BooksData);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "BooksPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Books";
             ((System.ComponentModel.ISupportInitialize)BooksData).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,5 +193,8 @@
         private Button LoansButton;
         private Button MembersButton;
         private Button PublishersButton;
+        private Button AddBookButton;
+        private GroupBox groupBox1;
+        private Button RefreshButton;
     }
 }
