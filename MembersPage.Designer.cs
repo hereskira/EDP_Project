@@ -139,6 +139,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MembersPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Members";
             ((System.ComponentModel.ISupportInitialize)MembersData).EndInit();
             ResumeLayout(false);

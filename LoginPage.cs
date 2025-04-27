@@ -18,6 +18,7 @@ namespace EDP_Project
             InitializeComponent();
             SubmitButton.Click += SubmitButton_Click;
             FPassButton.LinkClicked += FPassButton_LinkClicked;
+            HomeButton.Click += HomeButton_Click;
         }
 
         private void LoginPage_Load(object sender, EventArgs e)
@@ -75,6 +76,12 @@ namespace EDP_Project
             // Redirect to FPassPage
             FPassPage fPassPage = new FPassPage();
             fPassPage.Show();
+            this.Hide();
+        }
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            LandingPage landingPage = new LandingPage();
+            landingPage.Show();
             this.Hide();
         }
     }

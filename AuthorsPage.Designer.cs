@@ -138,6 +138,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AuthorsPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Authors";
             Load += AuthorsPage_Load_1;
             ((System.ComponentModel.ISupportInitialize)AuthorsData).EndInit();

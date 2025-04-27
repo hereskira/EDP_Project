@@ -115,6 +115,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "FPassPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

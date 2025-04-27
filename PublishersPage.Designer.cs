@@ -139,6 +139,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "PublishersPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Publishers";
             ((System.ComponentModel.ISupportInitialize)PublishersData).EndInit();
             ResumeLayout(false);

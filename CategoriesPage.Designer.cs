@@ -136,6 +136,7 @@
             Controls.Add(label1);
             Controls.Add(CategoriesData);
             Name = "CategoriesPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Categories";
             ((System.ComponentModel.ISupportInitialize)CategoriesData).EndInit();
             ResumeLayout(false);

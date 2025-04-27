@@ -139,6 +139,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoansPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Loans";
             ((System.ComponentModel.ISupportInitialize)LoansData).EndInit();
             ResumeLayout(false);

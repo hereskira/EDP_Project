@@ -36,6 +36,7 @@
             groupBox1 = new GroupBox();
             FPassButton = new LinkLabel();
             SubmitButton = new Button();
+            HomeButton = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -116,16 +117,27 @@
             SubmitButton.Text = "Submit";
             SubmitButton.UseVisualStyleBackColor = true;
             // 
+            // HomeButton
+            // 
+            HomeButton.Location = new Point(37, 23);
+            HomeButton.Name = "HomeButton";
+            HomeButton.Size = new Size(75, 23);
+            HomeButton.TabIndex = 6;
+            HomeButton.Text = "Home";
+            HomeButton.UseVisualStyleBackColor = true;
+            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(HomeButton);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login Page";
             Load += LoginPage_Load;
             groupBox1.ResumeLayout(false);
@@ -144,5 +156,6 @@
         private GroupBox groupBox1;
         private Button SubmitButton;
         private LinkLabel FPassButton;
+        private Button HomeButton;
     }
 }

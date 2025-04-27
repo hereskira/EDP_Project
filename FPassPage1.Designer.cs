@@ -128,6 +128,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FPassPage1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FPassPage1";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

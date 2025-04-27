@@ -138,6 +138,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EmployeesPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Employees";
             ((System.ComponentModel.ISupportInitialize)EmployeesData).EndInit();
             ResumeLayout(false);

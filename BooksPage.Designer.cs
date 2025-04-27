@@ -139,6 +139,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "BooksPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Books";
             ((System.ComponentModel.ISupportInitialize)BooksData).EndInit();
             ResumeLayout(false);

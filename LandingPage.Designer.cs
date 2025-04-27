@@ -42,7 +42,7 @@
             label1.Size = new Size(293, 30);
             label1.TabIndex = 0;
             label1.Text = "Library Management System";
-            label1.Click += this.label1_Click;
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -61,9 +61,9 @@
             button1.TabIndex = 2;
             button1.Text = "Log In";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click;
+            button1.Click += button1_Click;
             // 
-            // Form1
+            // LandingPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -73,7 +73,8 @@
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form1";
+            Name = "LandingPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Landing Page";
             ResumeLayout(false);
             PerformLayout();
