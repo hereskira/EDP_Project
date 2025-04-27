@@ -31,7 +31,20 @@ namespace EDP_Project
         }
         private void LoadLoansData()
         {
-            string query = "SELECT loan_id, member_id, book_id, employee_id, loan_date, due_date, is_paid, is_overdue FROM loans";
+            string query = @"
+        SELECT 
+            loans.loan_id, 
+            CONCAT(members.first_name, ' ', members.last_name) AS member_name, 
+            books.title AS book_title, 
+            CONCAT(employees.first_name, ' ', employees.last_name) AS employee_name, 
+            loans.loan_date, 
+            loans.due_date, 
+            loans.is_paid, 
+            loans.is_overdue
+        FROM loans
+        LEFT JOIN members ON loans.member_id = members.member_id
+        LEFT JOIN books ON loans.book_id = books.book_id
+        LEFT JOIN employees ON loans.employee_id = employees.employee_id";
 
             try
             {

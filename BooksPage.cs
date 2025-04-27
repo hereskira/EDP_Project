@@ -29,10 +29,22 @@ namespace EDP_Project
         {
             LoadBooksData();
         }
-
         private void LoadBooksData()
         {
-            string query = "SELECT book_id, title, author_id, publisher_id, category_id, publication_year, price, available_copies FROM books";
+            string query = @"
+        SELECT 
+            books.book_id, 
+            books.title, 
+            authors.name AS author_name, 
+            publishers.name AS publisher_name, 
+            categories.name AS category_name, 
+            books.publication_year, 
+            books.price, 
+            books.available_copies
+        FROM books
+        LEFT JOIN authors ON books.author_id = authors.author_id
+        LEFT JOIN publishers ON books.publisher_id = publishers.publisher_id
+        LEFT JOIN categories ON books.category_id = categories.category_id";
 
             try
             {
@@ -54,7 +66,6 @@ namespace EDP_Project
                 MessageBox.Show($"An error occurred while loading books data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void BooksData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
