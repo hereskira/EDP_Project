@@ -1,6 +1,6 @@
 ﻿namespace EDP_Project
 {
-    partial class LoginPage
+    partial class FPassPage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,11 @@
         {
             label1 = new Label();
             label2 = new Label();
-            Username_Input = new TextBox();
+            EmailInput = new TextBox();
             label3 = new Label();
-            Password_Input = new TextBox();
+            ContinueButton = new Button();
             groupBox1 = new GroupBox();
-            SubmitButton = new Button();
-            FPassButton = new LinkLabel();
+            BackButton = new LinkLabel();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -43,90 +42,80 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(198, 77);
+            label1.Location = new Point(286, 79);
             label1.Name = "label1";
-            label1.Size = new Size(420, 30);
+            label1.Size = new Size(200, 30);
             label1.TabIndex = 0;
-            label1.Text = "Login to the Library Management System";
+            label1.Text = "Password Recovery";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 17);
+            label2.Location = new Point(239, 139);
             label2.Name = "label2";
-            label2.Size = new Size(63, 15);
+            label2.Size = new Size(301, 15);
             label2.TabIndex = 1;
-            label2.Text = "Username:";
+            label2.Text = "Please enter your email address to recover your account";
             // 
-            // Username_Input
+            // EmailInput
             // 
-            Username_Input.Location = new Point(21, 35);
-            Username_Input.Name = "Username_Input";
-            Username_Input.Size = new Size(100, 23);
-            Username_Input.TabIndex = 2;
+            EmailInput.Location = new Point(23, 50);
+            EmailInput.Name = "EmailInput";
+            EmailInput.Size = new Size(191, 23);
+            EmailInput.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(24, 81);
+            label3.Location = new Point(23, 32);
             label3.Name = "label3";
-            label3.Size = new Size(60, 15);
+            label3.Size = new Size(81, 15);
             label3.TabIndex = 3;
-            label3.Text = "Password:";
+            label3.Text = "Email Address";
             // 
-            // Password_Input
+            // ContinueButton
             // 
-            Password_Input.Location = new Point(21, 99);
-            Password_Input.Name = "Password_Input";
-            Password_Input.Size = new Size(100, 23);
-            Password_Input.TabIndex = 4;
+            ContinueButton.Location = new Point(120, 105);
+            ContinueButton.Name = "ContinueButton";
+            ContinueButton.Size = new Size(75, 23);
+            ContinueButton.TabIndex = 4;
+            ContinueButton.Text = "Continue";
+            ContinueButton.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(FPassButton);
-            groupBox1.Controls.Add(SubmitButton);
-            groupBox1.Controls.Add(Username_Input);
-            groupBox1.Controls.Add(Password_Input);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(BackButton);
+            groupBox1.Controls.Add(EmailInput);
+            groupBox1.Controls.Add(ContinueButton);
             groupBox1.Controls.Add(label3);
-            groupBox1.Location = new Point(257, 157);
+            groupBox1.Location = new Point(239, 170);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(245, 219);
+            groupBox1.Size = new Size(301, 166);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Input Credentials";
             // 
-            // SubmitButton
+            // BackButton
             // 
-            SubmitButton.Location = new Point(86, 170);
-            SubmitButton.Name = "SubmitButton";
-            SubmitButton.Size = new Size(75, 23);
-            SubmitButton.TabIndex = 5;
-            SubmitButton.Text = "Submit";
-            SubmitButton.UseVisualStyleBackColor = true;
+            BackButton.AutoSize = true;
+            BackButton.LinkColor = Color.Black;
+            BackButton.Location = new Point(116, 131);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(79, 15);
+            BackButton.TabIndex = 5;
+            BackButton.TabStop = true;
+            BackButton.Text = "Back to Login";
             // 
-            // FPassButton
-            // 
-            FPassButton.AutoSize = true;
-            FPassButton.Location = new Point(27, 140);
-            FPassButton.Name = "FPassButton";
-            FPassButton.Size = new Size(100, 15);
-            FPassButton.TabIndex = 6;
-            FPassButton.TabStop = true;
-            FPassButton.Text = "Forgot Password?";
-            // 
-            // LoginPage
+            // FPassPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(groupBox1);
+            Controls.Add(label2);
             Controls.Add(label1);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "LoginPage";
-            Text = "Login Page";
-            Load += LoginPage_Load;
+            Name = "FPassPage";
+            Text = "Form1";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -137,11 +126,10 @@
 
         private Label label1;
         private Label label2;
-        private TextBox Username_Input;
+        private TextBox EmailInput;
         private Label label3;
-        private TextBox Password_Input;
+        private Button ContinueButton;
         private GroupBox groupBox1;
-        private Button SubmitButton;
-        private LinkLabel FPassButton;
+        private LinkLabel BackButton;
     }
 }

@@ -17,6 +17,7 @@ namespace EDP_Project
         {
             InitializeComponent();
             SubmitButton.Click += SubmitButton_Click;
+            FPassButton.LinkClicked += FPassButton_LinkClicked;
         }
 
         private void LoginPage_Load(object sender, EventArgs e)
@@ -69,6 +70,14 @@ namespace EDP_Project
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        private void FPassButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Redirect to FPassPage
+            FPassPage fPassPage = new FPassPage();
+            fPassPage.Show();
+            this.Hide();
         }
     }
 }

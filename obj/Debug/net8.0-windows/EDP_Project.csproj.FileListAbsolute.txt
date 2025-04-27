@@ -58,3 +58,6 @@ C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.Employee
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.LoansPage.resources
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.MembersPage.resources
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.PublishersPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.FPassPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.FPassPage1.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.FPassPage2.resources
