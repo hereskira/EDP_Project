@@ -46,21 +46,15 @@ namespace EDP_Project
                 MessageBox.Show("Email does not exist in the system.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private bool IsEmailExisting(string email)
         {
             bool exists = false;
-
-            // Reuse the connection string from LoadBooksData
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT COUNT(*) FROM users WHERE email = @Email";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", email);

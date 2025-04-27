@@ -32,11 +32,11 @@
             label1 = new Label();
             NewPassInput = new TextBox();
             groupBox1 = new GroupBox();
+            ConfirmPassInput = new TextBox();
+            label4 = new Label();
             BackButton = new LinkLabel();
             ResetPassButton = new Button();
             label3 = new Label();
-            ConfirmPassInput = new TextBox();
-            label4 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,6 +63,7 @@
             // 
             NewPassInput.Location = new Point(23, 50);
             NewPassInput.Name = "NewPassInput";
+            NewPassInput.PasswordChar = '*';
             NewPassInput.Size = new Size(191, 23);
             NewPassInput.TabIndex = 2;
             // 
@@ -80,6 +81,23 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Input Credentials";
+            // 
+            // ConfirmPassInput
+            // 
+            ConfirmPassInput.Location = new Point(23, 103);
+            ConfirmPassInput.Name = "ConfirmPassInput";
+            ConfirmPassInput.PasswordChar = '*';
+            ConfirmPassInput.Size = new Size(191, 23);
+            ConfirmPassInput.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(23, 85);
+            label4.Name = "label4";
+            label4.Size = new Size(129, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Confirm new password";
             // 
             // BackButton
             // 
@@ -109,22 +127,6 @@
             label3.Size = new Size(112, 15);
             label3.TabIndex = 3;
             label3.Text = "Enter new password";
-            // 
-            // ConfirmPassInput
-            // 
-            ConfirmPassInput.Location = new Point(23, 103);
-            ConfirmPassInput.Name = "ConfirmPassInput";
-            ConfirmPassInput.Size = new Size(191, 23);
-            ConfirmPassInput.TabIndex = 6;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(23, 85);
-            label4.Name = "label4";
-            label4.Size = new Size(129, 15);
-            label4.TabIndex = 7;
-            label4.Text = "Confirm new password";
             // 
             // FPassPage2
             // 

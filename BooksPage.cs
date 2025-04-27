@@ -32,14 +32,12 @@ namespace EDP_Project
 
         private void LoadBooksData()
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT book_id, title, author_id, publisher_id, category_id, publication_year, price, available_copies FROM books";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
@@ -56,6 +54,7 @@ namespace EDP_Project
                 MessageBox.Show($"An error occurred while loading books data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void BooksData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

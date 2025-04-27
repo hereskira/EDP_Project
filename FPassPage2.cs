@@ -67,19 +67,15 @@ namespace EDP_Project
             fPassPage1.Show();
             this.Close(); // Close the current form
         }
-
         private bool ResetPassword(string email, string newPassword)
         {
             bool isSuccess = false;
-
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "UPDATE users SET password = @NewPassword WHERE email = @Email";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@NewPassword", newPassword);

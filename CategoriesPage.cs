@@ -30,17 +30,14 @@ namespace EDP_Project
             LoadCategoriesData();
         }
 
-
         private void LoadCategoriesData()
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT category_id, name, description FROM categories";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))

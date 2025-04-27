@@ -32,14 +32,12 @@ namespace EDP_Project
 
         private void LoadAuthorsData()
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT author_id, name, biography FROM authors";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))

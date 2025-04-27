@@ -24,17 +24,14 @@ namespace EDP_Project
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
         }
-
         private void LoadEmployeesData()
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT employee_id, first_name, last_name, role, hire_date FROM employees";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))

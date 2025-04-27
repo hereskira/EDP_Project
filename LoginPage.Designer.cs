@@ -34,8 +34,8 @@
             label3 = new Label();
             Password_Input = new TextBox();
             groupBox1 = new GroupBox();
-            SubmitButton = new Button();
             FPassButton = new LinkLabel();
+            SubmitButton = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,6 +78,7 @@
             // 
             Password_Input.Location = new Point(21, 99);
             Password_Input.Name = "Password_Input";
+            Password_Input.PasswordChar = '*';
             Password_Input.Size = new Size(100, 23);
             Password_Input.TabIndex = 4;
             // 
@@ -96,15 +97,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Input Credentials";
             // 
-            // SubmitButton
-            // 
-            SubmitButton.Location = new Point(86, 170);
-            SubmitButton.Name = "SubmitButton";
-            SubmitButton.Size = new Size(75, 23);
-            SubmitButton.TabIndex = 5;
-            SubmitButton.Text = "Submit";
-            SubmitButton.UseVisualStyleBackColor = true;
-            // 
             // FPassButton
             // 
             FPassButton.AutoSize = true;
@@ -114,6 +106,15 @@
             FPassButton.TabIndex = 6;
             FPassButton.TabStop = true;
             FPassButton.Text = "Forgot Password?";
+            // 
+            // SubmitButton
+            // 
+            SubmitButton.Location = new Point(86, 170);
+            SubmitButton.Name = "SubmitButton";
+            SubmitButton.Size = new Size(75, 23);
+            SubmitButton.TabIndex = 5;
+            SubmitButton.Text = "Submit";
+            SubmitButton.UseVisualStyleBackColor = true;
             // 
             // LoginPage
             // 

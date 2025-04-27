@@ -29,17 +29,14 @@ namespace EDP_Project
         {
 
         }
-
         private void LoadLoansData()
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT loan_id, member_id, book_id, employee_id, loan_date, due_date, is_paid, is_overdue FROM loans";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))

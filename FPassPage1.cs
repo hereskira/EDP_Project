@@ -82,19 +82,15 @@ namespace EDP_Project
                 MessageBox.Show("No security question found for the provided email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private string GetSecurityQuestion(string email)
         {
             string securityQuestion = null;
-
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT security_question FROM users WHERE email = @Email";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", email);
@@ -117,19 +113,15 @@ namespace EDP_Project
 
             return securityQuestion;
         }
-
         private bool IsAnswerCorrect(string email, string answer)
         {
             bool isCorrect = false;
-
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT COUNT(*) FROM users WHERE email = @Email AND security_answer = @Answer";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", email);

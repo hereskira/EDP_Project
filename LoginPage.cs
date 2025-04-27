@@ -46,14 +46,12 @@ namespace EDP_Project
 
         private bool ValidateCredentials(string username, string password)
         {
-            string connectionString = "Server=localhost;Database=libsys;Uid=root;Pwd=mysqlkira;";
             string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = @password";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = DatabaseService.GetConnection())
                 {
-                    connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         // Use parameters to prevent SQL injection
