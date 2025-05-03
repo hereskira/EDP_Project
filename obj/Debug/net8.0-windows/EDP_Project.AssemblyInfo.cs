@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EDP_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03b9441dbb8733bca07551c470d25b97f1163cbb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea6855237288f2a814978d94c8fe647ef798caf9")]
 [assembly: System.Reflection.AssemblyProductAttribute("EDP_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EDP_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

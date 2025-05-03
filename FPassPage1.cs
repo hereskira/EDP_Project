@@ -85,7 +85,11 @@ namespace EDP_Project
         private string GetSecurityQuestion(string email)
         {
             string securityQuestion = null;
-            string query = "SELECT security_question FROM users WHERE email = @Email";
+            string query = @"
+                SELECT sq.question_text 
+                FROM users u
+                INNER JOIN security_questions sq ON u.security_question = sq.question_id
+                WHERE u.email = @Email";
 
             try
             {
@@ -99,7 +103,7 @@ namespace EDP_Project
                         {
                             if (reader.Read())
                             {
-                                securityQuestion = reader["security_question"].ToString();
+                                securityQuestion = reader["question_text"].ToString();
                                 Console.WriteLine($"Security Question Retrieved: {securityQuestion}"); // Debug message
                             }
                         }

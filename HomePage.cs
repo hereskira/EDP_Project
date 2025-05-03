@@ -22,6 +22,8 @@ namespace EDP_Project
             // Wire up the event handlers for the existing menu items
             logOutToolStripMenuItem.Click += LogOutToolStripMenuItem_Click;
             toolStripMenuItem2.Click += ExitToolStripMenuItem_Click;
+
+            usersStripButton.Click += UsersStripButton_Click;
         }
 
         private void LogOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,6 +54,10 @@ namespace EDP_Project
             booksPage.Show();
             this.Hide();
         }
-
+        private void UsersStripButton_Click(object sender, EventArgs e)
+        {
+            UsersPage usersPage = new UsersPage();
+            usersPage.ShowDialog(); // Show the UsersPage without hiding the HomePage
+        }
     }
 }
