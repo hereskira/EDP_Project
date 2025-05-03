@@ -23,6 +23,8 @@ namespace EDP_Project
             LoansButton.Click += LoansButton_Click;
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
+            AddAuthorButton.Click += AddAuthorButton_Click;
+            RefreshButton.Click += RefreshButton_Click;
         }
 
         private void AuthorsPage_Load(object sender, EventArgs e)
@@ -106,6 +108,18 @@ namespace EDP_Project
             PublishersPage publishersPage = new PublishersPage();
             publishersPage.Show();
             this.Hide();
+        }
+
+        private void AddAuthorButton_Click(object sender, EventArgs e)
+        {
+            // Show the AddAuthorsPage
+            AddAuthorsPage addAuthorsPage = new AddAuthorsPage();
+            addAuthorsPage.Show();
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            LoadAuthorsData(); // Reload the data in the DataGridView
         }
     }
 }

@@ -37,7 +37,11 @@
             LoansButton = new Button();
             EmployeesButton = new Button();
             CategoriesButton = new Button();
+            groupBox1 = new GroupBox();
+            AddAuthorButton = new Button();
+            RefreshButton = new Button();
             ((System.ComponentModel.ISupportInitialize)AuthorsData).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // AuthorsButton
@@ -62,7 +66,7 @@
             // AuthorsData
             // 
             AuthorsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            AuthorsData.Location = new Point(57, 118);
+            AuthorsData.Location = new Point(25, 52);
             AuthorsData.Name = "AuthorsData";
             AuthorsData.Size = new Size(686, 304);
             AuthorsData.TabIndex = 3;
@@ -121,11 +125,41 @@
             CategoriesButton.Text = "Categories";
             CategoriesButton.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(RefreshButton);
+            groupBox1.Controls.Add(AddAuthorButton);
+            groupBox1.Controls.Add(AuthorsData);
+            groupBox1.Location = new Point(30, 99);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(740, 372);
+            groupBox1.TabIndex = 14;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Authors Table";
+            // 
+            // AddAuthorButton
+            // 
+            AddAuthorButton.Location = new Point(25, 22);
+            AddAuthorButton.Name = "AddAuthorButton";
+            AddAuthorButton.Size = new Size(75, 23);
+            AddAuthorButton.TabIndex = 15;
+            AddAuthorButton.Text = "Add New";
+            AddAuthorButton.UseVisualStyleBackColor = true;
+            // 
+            // RefreshButton
+            // 
+            RefreshButton.Location = new Point(106, 23);
+            RefreshButton.Name = "RefreshButton";
+            RefreshButton.Size = new Size(88, 23);
+            RefreshButton.TabIndex = 16;
+            RefreshButton.Text = "Refresh Table";
+            RefreshButton.UseVisualStyleBackColor = true;
+            // 
             // AuthorsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 480);
             Controls.Add(PublishersButton);
             Controls.Add(MembersButton);
             Controls.Add(LoansButton);
@@ -134,7 +168,7 @@
             Controls.Add(BooksButton);
             Controls.Add(AuthorsButton);
             Controls.Add(label1);
-            Controls.Add(AuthorsData);
+            Controls.Add(groupBox1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AuthorsPage";
@@ -142,6 +176,7 @@
             Text = "Authors";
             Load += AuthorsPage_Load_1;
             ((System.ComponentModel.ISupportInitialize)AuthorsData).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,5 +192,8 @@
         private Button LoansButton;
         private Button EmployeesButton;
         private Button CategoriesButton;
+        private GroupBox groupBox1;
+        private Button AddAuthorButton;
+        private Button RefreshButton;
     }
 }
