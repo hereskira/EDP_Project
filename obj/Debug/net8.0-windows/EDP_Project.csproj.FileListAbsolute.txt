@@ -63,3 +63,5 @@ C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.FPassPag
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.FPassPage2.resources
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.AddBooksPage.resources
 C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.AddAuthorsPage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.HomePage.resources
+C:\Users\Admin\Desktop\EDP_Project\obj\Debug\net8.0-windows\EDP_Project.Properties.Resources.resources

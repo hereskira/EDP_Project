@@ -34,9 +34,9 @@ namespace EDP_Project
             if (ValidateCredentials(username, password))
             {
                 MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Navigate to the next page (e.g., LandingPage)
-                BooksPage booksPage = new BooksPage();
-                booksPage.Show();
+                // Navigate to HomePage instead of BooksPage
+                HomePage homePage = new HomePage();
+                homePage.Show();
                 this.Hide();
             }
             else

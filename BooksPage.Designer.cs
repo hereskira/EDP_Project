@@ -40,6 +40,7 @@
             AddBookButton = new Button();
             groupBox1 = new GroupBox();
             RefreshButton = new Button();
+            HomeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)BooksData).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -157,11 +158,23 @@
             RefreshButton.Text = "Refresh Table";
             RefreshButton.UseVisualStyleBackColor = true;
             // 
+            // HomeButton
+            // 
+            HomeButton.BackgroundImage = Properties.Resources.home_icon;
+            HomeButton.BackgroundImageLayout = ImageLayout.Zoom;
+            HomeButton.Location = new Point(12, 12);
+            HomeButton.Name = "HomeButton";
+            HomeButton.Size = new Size(39, 33);
+            HomeButton.TabIndex = 11;
+            HomeButton.Text = " ";
+            HomeButton.UseVisualStyleBackColor = true;
+            // 
             // BooksPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 480);
+            Controls.Add(HomeButton);
             Controls.Add(groupBox1);
             Controls.Add(PublishersButton);
             Controls.Add(MembersButton);
@@ -196,5 +209,6 @@
         private Button AddBookButton;
         private GroupBox groupBox1;
         private Button RefreshButton;
+        private Button HomeButton;
     }
 }

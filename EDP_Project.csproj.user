@@ -28,6 +28,9 @@
     <Compile Update="FPassPage2.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="HomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="LoansPage.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -24,6 +24,7 @@ namespace EDP_Project
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
             RefreshButton.Click += RefreshButton_Click;
+            HomeButton.Click += HomeButton_Click;
         }
 
         private void BooksPage_Load(object sender, EventArgs e)
@@ -129,6 +130,12 @@ namespace EDP_Project
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             LoadBooksData(); // Reload the data in the DataGridView
+        }
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            HomePage homePage = new HomePage();
+            homePage.Show();
+            this.Hide();
         }
 
     }
