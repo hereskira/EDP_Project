@@ -20,6 +20,9 @@ namespace EDP_Project
             // Attach event handlers
             LoadButton.Click += LoadButton_Click;
             SaveButton.Click += SaveButton_Click;
+            SearchUsername.KeyDown += SearchUsername_KeyDown;
+            UpdateButton.Click += UpdateButton_Click;
+            DeleteButton.Click += DeleteButton_Click;
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -133,6 +136,143 @@ namespace EDP_Project
             public override string ToString()
             {
                 return Text; // Display the question text in the ComboBox
+            }
+        }
+        private void SearchUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string username = SearchUsername.Text.Trim();
+
+                if (string.IsNullOrEmpty(username))
+                {
+                    MessageBox.Show("Please enter a username to search.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    using (MySqlConnection connection = DatabaseService.GetConnection())
+                    {
+                        string query = "SELECT full_name, email, password FROM users WHERE username = @Username";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@Username", username);
+
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    // Populate the fields with the user's credentials
+                                    UpdateName.Text = reader["full_name"].ToString();
+                                    UpdateEmail.Text = reader["email"].ToString();
+                                    UpdatePass.Text = reader["password"].ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Username not found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while searching for the user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            string username = SearchUsername.Text.Trim();
+            string fullName = UpdateName.Text.Trim();
+            string email = UpdateEmail.Text.Trim();
+            string password = UpdatePass.Text.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please fill in all fields before updating.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = DatabaseService.GetConnection())
+                {
+                    string updateQuery = @"
+                    UPDATE users
+                    SET full_name = @FullName, email = @Email, password = @Password
+                    WHERE username = @Username";
+                    using (MySqlCommand command = new MySqlCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@FullName", fullName);
+                        command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@Password", password);
+                        command.Parameters.AddWithValue("@Username", username);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("User record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No changes were made or the username does not exist.", "Update Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating the user record: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            string username = DeleteUser.Text.Trim();
+
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Please enter a username to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = DatabaseService.GetConnection())
+                {
+                    // Check if the username exists
+                    string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @Username";
+                    using (MySqlCommand checkCommand = new MySqlCommand(checkQuery, connection))
+                    {
+                        checkCommand.Parameters.AddWithValue("@Username", username);
+
+                        int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+                        if (count == 0)
+                        {
+                            MessageBox.Show("The username does not exist.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
+                    // Delete the user
+                    string deleteQuery = "DELETE FROM users WHERE username = @Username";
+                    using (MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, connection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@Username", username);
+
+                        deleteCommand.ExecuteNonQuery();
+                        MessageBox.Show("User deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Clear the DeleteUser TextBox after successful deletion
+                        DeleteUser.Text = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while deleting the user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

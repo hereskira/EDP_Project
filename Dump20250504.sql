@@ -536,7 +536,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `username` (`username`),
   KEY `security_question` (`security_question`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`security_question`) REFERENCES `security_questions` (`question_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -545,7 +545,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','password','Shakira Regalado','shakiraregalado@gmail.com',NULL,1,'Fluffy'),(2,'kira','pass','Shakira Regalado','admin@gmail.com',NULL,5,'Pink');
+INSERT INTO `users` VALUES (1,'admin','password','Shakira Regalado','shakiraregalado@gmail.com',NULL,1,'Fluffy'),(7,'kira','pass','Shakira','shakira@gmail.com',NULL,5,'Pink');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1039,4 +1039,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-03 18:20:47
+-- Dump completed on 2025-05-04 14:44:56

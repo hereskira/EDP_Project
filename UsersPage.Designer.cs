@@ -45,9 +45,27 @@
             label2 = new Label();
             label1 = new Label();
             tabPage2 = new TabPage();
+            groupBox1 = new GroupBox();
+            UpdateButton = new Button();
+            UpdatePass = new TextBox();
+            label10 = new Label();
+            UpdateEmail = new TextBox();
+            label9 = new Label();
+            UpdateName = new TextBox();
+            label8 = new Label();
+            SearchUsername = new TextBox();
+            label7 = new Label();
             tabPage3 = new TabPage();
+            DeleteUser = new TextBox();
+            label11 = new Label();
+            groupBox2 = new GroupBox();
+            DeleteButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            groupBox1.SuspendLayout();
+            tabPage3.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -204,6 +222,9 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(groupBox1);
+            tabPage2.Controls.Add(SearchUsername);
+            tabPage2.Controls.Add(label7);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -212,14 +233,144 @@
             tabPage2.Text = "Update User Profile";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(UpdateButton);
+            groupBox1.Controls.Add(UpdatePass);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(UpdateEmail);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(UpdateName);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Location = new Point(27, 68);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(354, 223);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Update Existing Account";
+            // 
+            // UpdateButton
+            // 
+            UpdateButton.Location = new Point(113, 184);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(123, 23);
+            UpdateButton.TabIndex = 8;
+            UpdateButton.Text = "Update Account";
+            UpdateButton.UseVisualStyleBackColor = true;
+            // 
+            // UpdatePass
+            // 
+            UpdatePass.Location = new Point(113, 131);
+            UpdatePass.Name = "UpdatePass";
+            UpdatePass.PasswordChar = '*';
+            UpdatePass.Size = new Size(123, 23);
+            UpdatePass.TabIndex = 7;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(22, 131);
+            label10.Name = "label10";
+            label10.Size = new Size(60, 15);
+            label10.TabIndex = 6;
+            label10.Text = "Password:";
+            // 
+            // UpdateEmail
+            // 
+            UpdateEmail.Location = new Point(113, 80);
+            UpdateEmail.Name = "UpdateEmail";
+            UpdateEmail.Size = new Size(124, 23);
+            UpdateEmail.TabIndex = 5;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(22, 83);
+            label9.Name = "label9";
+            label9.Size = new Size(84, 15);
+            label9.TabIndex = 4;
+            label9.Text = "Email Address:";
+            // 
+            // UpdateName
+            // 
+            UpdateName.Location = new Point(113, 33);
+            UpdateName.Name = "UpdateName";
+            UpdateName.Size = new Size(124, 23);
+            UpdateName.TabIndex = 3;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(22, 36);
+            label8.Name = "label8";
+            label8.Size = new Size(64, 15);
+            label8.TabIndex = 0;
+            label8.Text = "Full Name:";
+            // 
+            // SearchUsername
+            // 
+            SearchUsername.Location = new Point(164, 23);
+            SearchUsername.Name = "SearchUsername";
+            SearchUsername.Size = new Size(100, 23);
+            SearchUsername.TabIndex = 1;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(27, 26);
+            label7.Name = "label7";
+            label7.Size = new Size(116, 15);
+            label7.TabIndex = 0;
+            label7.Text = "Search by username:";
+            // 
             // tabPage3
             // 
+            tabPage3.BackColor = Color.Gray;
+            tabPage3.Controls.Add(DeleteUser);
+            tabPage3.Controls.Add(label11);
+            tabPage3.Controls.Add(groupBox2);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Size = new Size(401, 321);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Delete User";
-            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // DeleteUser
+            // 
+            DeleteUser.Location = new Point(182, 81);
+            DeleteUser.Name = "DeleteUser";
+            DeleteUser.Size = new Size(100, 23);
+            DeleteUser.TabIndex = 3;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.White;
+            label11.Location = new Point(45, 84);
+            label11.Name = "label11";
+            label11.Size = new Size(116, 15);
+            label11.TabIndex = 2;
+            label11.Text = "Search by username:";
+            // 
+            // groupBox2
+            // 
+            groupBox2.BackColor = Color.White;
+            groupBox2.Controls.Add(DeleteButton);
+            groupBox2.Location = new Point(21, 31);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(345, 256);
+            groupBox2.TabIndex = 4;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Delete Existing Account";
+            // 
+            // DeleteButton
+            // 
+            DeleteButton.Location = new Point(115, 160);
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(102, 23);
+            DeleteButton.TabIndex = 0;
+            DeleteButton.Text = "Delete Account";
+            DeleteButton.UseVisualStyleBackColor = true;
             // 
             // UsersPage
             // 
@@ -235,6 +386,13 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -258,5 +416,19 @@
         private Button LoadButton;
         private TextBox NameInput;
         private Label label6;
+        private GroupBox groupBox1;
+        private TextBox UpdatePass;
+        private Label label10;
+        private TextBox UpdateEmail;
+        private Label label9;
+        private TextBox UpdateName;
+        private Label label8;
+        private TextBox SearchUsername;
+        private Label label7;
+        private Button UpdateButton;
+        private TextBox DeleteUser;
+        private Label label11;
+        private GroupBox groupBox2;
+        private Button DeleteButton;
     }
 }
