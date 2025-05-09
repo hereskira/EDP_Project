@@ -1,0 +1,3 @@
+user_id,username,password,full_name,email,security_question,security_answer
+1,admin,password,Shakira Regalado,shakiraregalado@gmail.com,1,Fluffy
+7,kira,pass,Shakira,shakira@gmail.com,5,Pink

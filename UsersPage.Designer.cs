@@ -382,7 +382,7 @@
             MinimizeBox = false;
             Name = "UsersPage";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "UsersPage";
+            Text = "User Manager";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();

@@ -33,14 +33,16 @@
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
-            BooksButton = new Button();
             usersStripButton = new ToolStripButton();
+            BooksButton = new Button();
+            toolStripButton1 = new ToolStripDropDownButton();
+            listOfUsersToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, usersStripButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, usersStripButton, toolStripButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
@@ -61,14 +63,23 @@
             // logOutToolStripMenuItem
             // 
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            logOutToolStripMenuItem.Size = new Size(180, 22);
+            logOutToolStripMenuItem.Size = new Size(117, 22);
             logOutToolStripMenuItem.Text = "Log Out";
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(180, 22);
+            toolStripMenuItem2.Size = new Size(117, 22);
             toolStripMenuItem2.Text = "Exit";
+            // 
+            // usersStripButton
+            // 
+            usersStripButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            usersStripButton.Image = (Image)resources.GetObject("usersStripButton.Image");
+            usersStripButton.ImageTransparentColor = Color.Magenta;
+            usersStripButton.Name = "usersStripButton";
+            usersStripButton.Size = new Size(80, 22);
+            usersStripButton.Text = "System Users";
             // 
             // BooksButton
             // 
@@ -79,14 +90,21 @@
             BooksButton.Text = "Proceed to Library Records";
             BooksButton.UseVisualStyleBackColor = true;
             // 
-            // usersStripButton
+            // toolStripButton1
             // 
-            usersStripButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            usersStripButton.Image = (Image)resources.GetObject("usersStripButton.Image");
-            usersStripButton.ImageTransparentColor = Color.Magenta;
-            usersStripButton.Name = "usersStripButton";
-            usersStripButton.Size = new Size(80, 22);
-            usersStripButton.Text = "System Users";
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton1.DropDownItems.AddRange(new ToolStripItem[] { listOfUsersToolStripMenuItem });
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(60, 22);
+            toolStripButton1.Text = "Reports";
+            // 
+            // listOfUsersToolStripMenuItem
+            // 
+            listOfUsersToolStripMenuItem.Name = "listOfUsersToolStripMenuItem";
+            listOfUsersToolStripMenuItem.Size = new Size(180, 22);
+            listOfUsersToolStripMenuItem.Text = "List of Users";
             // 
             // HomePage
             // 
@@ -114,5 +132,7 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private Button BooksButton;
         private ToolStripButton usersStripButton;
+        private ToolStripDropDownButton toolStripButton1;
+        private ToolStripMenuItem listOfUsersToolStripMenuItem;
     }
 }
