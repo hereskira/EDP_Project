@@ -42,8 +42,8 @@ namespace EDP_Project
                         }
                     }
 
-                    // Fetch employee names and IDs
-                    string employeesQuery = "SELECT employee_id, first_name, last_name FROM employees";
+                    // Fetch employee names and IDs using the fullname function
+                    string employeesQuery = "SELECT employee_id, fullname(first_name, last_name) AS full_name FROM employees";
                     using (var employeesCommand = new MySqlCommand(employeesQuery, connection))
                     {
                         using (var employeesReader = employeesCommand.ExecuteReader())
@@ -51,15 +51,15 @@ namespace EDP_Project
                             EmployeeCBox.Items.Clear(); // Clear existing items
                             while (employeesReader.Read())
                             {
-                                string fullName = $"{employeesReader["first_name"]} {employeesReader["last_name"]}";
+                                string fullName = employeesReader["full_name"].ToString();
                                 string employeeId = employeesReader["employee_id"].ToString();
                                 EmployeeCBox.Items.Add(new ComboBoxItem(fullName, employeeId)); // Add employee name and ID
                             }
                         }
                     }
 
-                    // Fetch member names and IDs
-                    string membersQuery = "SELECT member_id, first_name, last_name FROM members";
+                    // Fetch member names and IDs using the fullname function
+                    string membersQuery = "SELECT member_id, fullname(first_name, last_name) AS full_name FROM members";
                     using (var membersCommand = new MySqlCommand(membersQuery, connection))
                     {
                         using (var membersReader = membersCommand.ExecuteReader())
@@ -67,7 +67,7 @@ namespace EDP_Project
                             MemberCBox.Items.Clear(); // Clear existing items
                             while (membersReader.Read())
                             {
-                                string fullName = $"{membersReader["first_name"]} {membersReader["last_name"]}";
+                                string fullName = membersReader["full_name"].ToString();
                                 string memberId = membersReader["member_id"].ToString();
                                 MemberCBox.Items.Add(new ComboBoxItem(fullName, memberId)); // Add member name and ID
                             }
