@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -35,7 +29,7 @@ namespace EDP_Project
                         {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
-                            AccountsData.DataSource = dataTable; // Bind the data to the DataGridView
+                            AccountsData.DataSource = dataTable;
                         }
                     }
                 }
@@ -45,106 +39,76 @@ namespace EDP_Project
                 MessageBox.Show($"An error occurred while loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnExport_Click(object sender, EventArgs e)
         {
-            string reportsFolder = Application.StartupPath + @"\reports";
-            if (!System.IO.Directory.Exists(reportsFolder))
+            // Directly use the template path you want to use
+            string filePath = @"C:\Users\Admin\Desktop\userlist.xlsx";
+
+            // Log the file path
+            Console.WriteLine("File Path: " + filePath);
+
+            // Check if the file exists
+            if (!System.IO.File.Exists(filePath))
             {
-                System.IO.Directory.CreateDirectory(reportsFolder); // Ensure the reports folder exists
+                MessageBox.Show("File not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            DateTime now = DateTime.Now;
-            string mydate = now.ToString("yyyy-MM-dd-HH-mm-ss"); // Corrected date format
-            string newFilePath = reportsFolder + @"\report-" + mydate + ".csv";
-
-            ExportDataGridViewToCsv(AccountsData, newFilePath);
+            // Call the method to export the data, providing the file path
+            ExportDataGridViewToExcelTemplate(AccountsData, filePath);
         }
-        private void ExportDataGridViewToExcelTemplate(DataGridView dgv, string templatePath, string newFilePath)
+
+        private void ExportDataGridViewToExcelTemplate(DataGridView dgv, string filePath)
         {
             try
             {
-                // Set the EPPlus license key or context
-                // For non-commercial use:
-                OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-                // For commercial use (replace with your actual license key):
-                // OfficeOpenXml.ExcelPackage.License = "your-license-key-here";
-
-                // Check if the template file exists
-                if (!System.IO.File.Exists(templatePath))
+                var excelApp = new Excel.Application();
+                if (excelApp == null)
                 {
-                    MessageBox.Show($"Template file not found at: {templatePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Excel is not installed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Load the template file
-                using (var package = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(templatePath)))
+                // Make Excel invisible
+                excelApp.Visible = false;
+
+                // Open the existing workbook
+                var workbook = excelApp.Workbooks.Open(filePath);
+                var worksheet = (Excel.Worksheet)workbook.Worksheets[1]; // Use the first sheet in the workbook
+
+                // Start writing from row 2 (assuming row 1 has headers)
+                int rowIndex = 2;
+
+                // Iterate through the rows of the DataGridView
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    var worksheet = package.Workbook.Worksheets[0]; // Assuming the first worksheet
-
-                    // Start from row 3 (assuming headers in rows 1 and 2)
-                    int rowIndex = 3;
-
-                    // Iterate through the rows of the DataGridView
-                    foreach (DataGridViewRow row in dgv.Rows)
+                    if (!row.IsNewRow) // Skip the new row in DataGridView
                     {
-                        if (!row.IsNewRow) // Skip the new row in DataGridView
+                        for (int col = 0; col < dgv.Columns.Count; col++)
                         {
-                            for (int col = 0; col < dgv.Columns.Count; col++)
-                            {
-                                worksheet.Cells[rowIndex, col + 1].Value = row.Cells[col].Value?.ToString() ?? string.Empty;
-                            }
-                            rowIndex++;
+                            // Write data to Excel cells (Excel is 1-based)
+                            worksheet.Cells[rowIndex, col + 1] = row.Cells[col].Value?.ToString() ?? string.Empty;
                         }
-                    }
-
-                    // Save the new file
-                    package.SaveAs(new System.IO.FileInfo(newFilePath));
-                }
-
-                MessageBox.Show($"Data exported successfully to {newFilePath}", "Export Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred during export: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void ExportDataGridViewToCsv(DataGridView dgv, string newFilePath)
-        {
-            try
-            {
-                // Create or overwrite the file
-                using (var writer = new System.IO.StreamWriter(newFilePath))
-                {
-                    // Write the header row
-                    for (int col = 0; col < dgv.Columns.Count; col++)
-                    {
-                        writer.Write(dgv.Columns[col].HeaderText);
-                        if (col < dgv.Columns.Count - 1)
-                            writer.Write(","); // Add a comma between columns
-                    }
-                    writer.WriteLine(); // End the header row
-
-                    // Write the data rows
-                    foreach (DataGridViewRow row in dgv.Rows)
-                    {
-                        if (!row.IsNewRow) // Skip the new row in DataGridView
-                        {
-                            for (int col = 0; col < dgv.Columns.Count; col++)
-                            {
-                                writer.Write(row.Cells[col].Value?.ToString() ?? string.Empty);
-                                if (col < dgv.Columns.Count - 1)
-                                    writer.Write(","); // Add a comma between columns
-                            }
-                            writer.WriteLine(); // End the data row
-                        }
+                        rowIndex++;
                     }
                 }
 
-                MessageBox.Show($"Data exported successfully to {newFilePath}", "Export Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Save the workbook (overwrite without prompt)
+                workbook.Save();
+                workbook.Close(false);
+                excelApp.Quit();
+
+                MessageBox.Show("Data exported successfully in userlist.xlsx", "Export Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Release COM objects to avoid memory leaks
+                Marshal.ReleaseComObject(worksheet);
+                Marshal.ReleaseComObject(workbook);
+                Marshal.ReleaseComObject(excelApp);
             }
             catch (Exception ex)
             {
+                // If an error occurs, show the error message
                 MessageBox.Show($"An error occurred during export: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
