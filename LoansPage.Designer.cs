@@ -37,7 +37,11 @@
             AuthorsButton = new Button();
             label1 = new Label();
             LoansData = new DataGridView();
+            groupBox1 = new GroupBox();
+            AddLoanButton = new Button();
+            RefreshButton = new Button();
             ((System.ComponentModel.ISupportInitialize)LoansData).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // PublishersButton
@@ -116,17 +120,48 @@
             // LoansData
             // 
             LoansData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            LoansData.Location = new Point(57, 118);
+            LoansData.Location = new Point(29, 52);
             LoansData.Name = "LoansData";
             LoansData.Size = new Size(686, 304);
             LoansData.TabIndex = 9;
             LoansData.CellContentClick += LoansData_CellContentClick;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(RefreshButton);
+            groupBox1.Controls.Add(AddLoanButton);
+            groupBox1.Controls.Add(LoansData);
+            groupBox1.Location = new Point(26, 99);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(749, 372);
+            groupBox1.TabIndex = 18;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Loans Table";
+            // 
+            // AddLoanButton
+            // 
+            AddLoanButton.Location = new Point(29, 22);
+            AddLoanButton.Name = "AddLoanButton";
+            AddLoanButton.Size = new Size(75, 23);
+            AddLoanButton.TabIndex = 10;
+            AddLoanButton.Text = "Add New";
+            AddLoanButton.UseVisualStyleBackColor = true;
+            // 
+            // RefreshButton
+            // 
+            RefreshButton.Location = new Point(110, 22);
+            RefreshButton.Name = "RefreshButton";
+            RefreshButton.Size = new Size(88, 23);
+            RefreshButton.TabIndex = 19;
+            RefreshButton.Text = "Refresh Table";
+            RefreshButton.UseVisualStyleBackColor = true;
+            // 
             // LoansPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 480);
+            Controls.Add(groupBox1);
             Controls.Add(PublishersButton);
             Controls.Add(MembersButton);
             Controls.Add(LoansButton);
@@ -135,13 +170,13 @@
             Controls.Add(BooksButton);
             Controls.Add(AuthorsButton);
             Controls.Add(label1);
-            Controls.Add(LoansData);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoansPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Loans";
             ((System.ComponentModel.ISupportInitialize)LoansData).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,5 +192,8 @@
         private Button AuthorsButton;
         private Label label1;
         private DataGridView LoansData;
+        private GroupBox groupBox1;
+        private Button AddLoanButton;
+        private Button RefreshButton;
     }
 }

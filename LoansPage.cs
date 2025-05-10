@@ -23,6 +23,7 @@ namespace EDP_Project
             EmployeesButton.Click += EmployeesButton_Click;
             MembersButton.Click += MembersButton_Click;
             PublishersButton.Click += PublishersButton_Click;
+            AddLoanButton.Click += AddLoanButton_Click;
         }
 
         private void LoansData_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +114,13 @@ namespace EDP_Project
             PublishersPage publishersPage = new PublishersPage();
             publishersPage.Show();
             this.Hide();
+        }
+        private void AddLoanButton_Click(object sender, EventArgs e)
+        {
+            using (AddLoansPage addLoansPage = new AddLoansPage())
+            {
+                addLoansPage.ShowDialog(); // Open AddLoansPage as a dialog
+            }
         }
     }
 }

@@ -213,6 +213,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(386, 510);
             Controls.Add(groupBox1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddBooksPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add Books";
