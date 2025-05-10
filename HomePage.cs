@@ -18,6 +18,7 @@ namespace EDP_Project
         {
             InitializeComponent();
             BooksButton.Click += BooksButton_Click;
+            LandingPButton.Click += LandingPButton_Click;
 
             // Wire up the event handlers for the existing menu items
             logOutToolStripMenuItem.Click += LogOutToolStripMenuItem_Click;
@@ -64,6 +65,18 @@ namespace EDP_Project
             AccountsPage accountsPage = new AccountsPage();
             accountsPage.ShowDialog(); // Show the AccountsPage as a dialog
         }
+        private void LandingPButton_Click(object sender, EventArgs e)
+        {
+            // Navigate to LandingPage
+            LandingPage landingPage = new LandingPage();
+            landingPage.Show();
 
+            // Close the current page
+            this.Close();
+
+            // Perform logout logic (if any additional logic is required)
+            // Example: Clear user session or authentication tokens
+            // Logout logic can be added here if needed
+        }
     }
 }

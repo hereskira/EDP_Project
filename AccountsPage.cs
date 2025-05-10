@@ -42,18 +42,20 @@ namespace EDP_Project
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            // Directly use the template path you want to use
-            string filePath = @"C:\Users\Admin\Desktop\userlist.xlsx";
+            // Define the target directory relative to the application's base directory
+            string targetDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "reports");
+
+            // Ensure the directory exists
+            if (!System.IO.Directory.Exists(targetDirectory))
+            {
+                System.IO.Directory.CreateDirectory(targetDirectory);
+            }
+
+            // Define the file name and combine it with the target directory
+            string filePath = System.IO.Path.Combine(targetDirectory, "userlist.xlsx");
 
             // Log the file path
-            Console.WriteLine("File Path: " + filePath);
-
-            // Check if the file exists
-            if (!System.IO.File.Exists(filePath))
-            {
-                MessageBox.Show("File not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            Console.WriteLine("Exporting to File Path: " + filePath);
 
             // Call the method to export the data, providing the file path
             ExportDataGridViewToExcelTemplate(AccountsData, filePath);

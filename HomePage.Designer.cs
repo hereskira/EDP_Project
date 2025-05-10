@@ -34,9 +34,10 @@
             logOutToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             usersStripButton = new ToolStripButton();
-            BooksButton = new Button();
             toolStripButton1 = new ToolStripDropDownButton();
             listOfUsersToolStripMenuItem = new ToolStripMenuItem();
+            BooksButton = new Button();
+            LandingPButton = new Button();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, usersStripButton, toolStripButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 25);
+            toolStrip1.Size = new Size(383, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -81,15 +82,6 @@
             usersStripButton.Size = new Size(80, 22);
             usersStripButton.Text = "System Users";
             // 
-            // BooksButton
-            // 
-            BooksButton.Location = new Point(325, 172);
-            BooksButton.Name = "BooksButton";
-            BooksButton.Size = new Size(102, 38);
-            BooksButton.TabIndex = 1;
-            BooksButton.Text = "Proceed to Library Records";
-            BooksButton.UseVisualStyleBackColor = true;
-            // 
             // toolStripButton1
             // 
             toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -103,14 +95,33 @@
             // listOfUsersToolStripMenuItem
             // 
             listOfUsersToolStripMenuItem.Name = "listOfUsersToolStripMenuItem";
-            listOfUsersToolStripMenuItem.Size = new Size(180, 22);
+            listOfUsersToolStripMenuItem.Size = new Size(137, 22);
             listOfUsersToolStripMenuItem.Text = "List of Users";
+            // 
+            // BooksButton
+            // 
+            BooksButton.Location = new Point(95, 72);
+            BooksButton.Name = "BooksButton";
+            BooksButton.Size = new Size(175, 38);
+            BooksButton.TabIndex = 1;
+            BooksButton.Text = "Proceed to Library Records";
+            BooksButton.UseVisualStyleBackColor = true;
+            // 
+            // LandingPButton
+            // 
+            LandingPButton.Location = new Point(95, 116);
+            LandingPButton.Name = "LandingPButton";
+            LandingPButton.Size = new Size(175, 38);
+            LandingPButton.TabIndex = 2;
+            LandingPButton.Text = "Go Back to Landing Page";
+            LandingPButton.UseVisualStyleBackColor = true;
             // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(383, 219);
+            Controls.Add(LandingPButton);
             Controls.Add(BooksButton);
             Controls.Add(toolStrip1);
             MaximizeBox = false;
@@ -134,5 +145,6 @@
         private ToolStripButton usersStripButton;
         private ToolStripDropDownButton toolStripButton1;
         private ToolStripMenuItem listOfUsersToolStripMenuItem;
+        private Button LandingPButton;
     }
 }
