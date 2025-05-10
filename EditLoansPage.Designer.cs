@@ -1,6 +1,6 @@
 ﻿namespace EDP_Project
 {
-    partial class AddLoansPage
+    partial class EditLoansPage
     {
         /// <summary>
         /// Required designer variable.
@@ -26,9 +26,6 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private GroupBox PaidGroupBox;
-        private GroupBox OverdueGroupBox;
-
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
@@ -43,7 +40,6 @@
             MemberCBox = new ComboBox();
             EmployeeCBox = new ComboBox();
             label7 = new Label();
-            LoadButton = new Button();
             AddLoanButton = new Button();
             BookCBox = new ComboBox();
             label1 = new Label();
@@ -64,7 +60,6 @@
             groupBox1.Controls.Add(MemberCBox);
             groupBox1.Controls.Add(EmployeeCBox);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(LoadButton);
             groupBox1.Controls.Add(AddLoanButton);
             groupBox1.Controls.Add(BookCBox);
             groupBox1.Controls.Add(label1);
@@ -74,9 +69,9 @@
             groupBox1.Location = new Point(37, 18);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(313, 475);
-            groupBox1.TabIndex = 13;
+            groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Add New Loan";
+            groupBox1.Text = "Edit Existing Loan";
             // 
             // OverdueGBox
             // 
@@ -179,22 +174,13 @@
             label7.TabIndex = 15;
             label7.Text = "Employee in Charge:";
             // 
-            // LoadButton
-            // 
-            LoadButton.Location = new Point(163, 425);
-            LoadButton.Name = "LoadButton";
-            LoadButton.Size = new Size(78, 26);
-            LoadButton.TabIndex = 13;
-            LoadButton.Text = "Load";
-            LoadButton.UseVisualStyleBackColor = true;
-            // 
             // AddLoanButton
             // 
-            AddLoanButton.Location = new Point(79, 425);
+            AddLoanButton.Location = new Point(120, 432);
             AddLoanButton.Name = "AddLoanButton";
             AddLoanButton.Size = new Size(78, 26);
             AddLoanButton.TabIndex = 12;
-            AddLoanButton.Text = "Add";
+            AddLoanButton.Text = "Edit";
             AddLoanButton.UseVisualStyleBackColor = true;
             // 
             // BookCBox
@@ -241,7 +227,7 @@
             label4.TabIndex = 6;
             label4.Text = "Due Date:";
             // 
-            // AddLoansPage
+            // EditLoansPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -249,9 +235,9 @@
             Controls.Add(groupBox1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "AddLoansPage";
+            Name = "EditLoansPage";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Add Loans";
+            Text = "Edit Loans";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             OverdueGBox.ResumeLayout(false);
@@ -264,23 +250,22 @@
         #endregion
 
         private GroupBox groupBox1;
+        private GroupBox OverdueGBox;
+        private RadioButton NoOverdue;
+        private RadioButton YesOverdue;
+        private GroupBox PaidGBox;
+        private RadioButton NoPaid;
+        private RadioButton YesPaid;
+        private DateTimePicker DueDate;
+        private DateTimePicker LoanDate;
         private ComboBox MemberCBox;
         private ComboBox EmployeeCBox;
         private Label label7;
-        private Button LoadButton;
         private Button AddLoanButton;
         private ComboBox BookCBox;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private RadioButton YesPaid;
-        private DateTimePicker DueDate;
-        private DateTimePicker LoanDate;
-        private RadioButton NoOverdue;
-        private RadioButton YesOverdue;
-        private RadioButton NoPaid;
-        private GroupBox OverdueGBox;
-        private GroupBox PaidGBox;
     }
 }
