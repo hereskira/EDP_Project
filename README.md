@@ -78,6 +78,16 @@ The system uses **8 main relational tables**:
 
 ---
 
+## 📂 Reports
+
+- 📁 **Templates:**
+  - `reportTemplate/userlist.xlsx` – Pre-formatted Excel template used for generating user list reports
+
+- 📁 **Generated Reports:**
+  - `generatedReports/files/` – Folder where dynamically created Excel reports are saved
+ 
+---
+
 ## 👤 Developer
 
 **Shakira B. Regalado**  
