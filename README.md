@@ -33,9 +33,34 @@ The system uses **8 main relational tables**:
 
 ## ⚙️ Installer
 
-- Built using **Visual Studio Installer Projects**
-- Output located in:  
-  📁 `EDPProjSetup/Debug`
+### 📦 Visual Studio Installer Project
+
+- Built using **Visual Studio Installer Projects**.
+- **Outputs:**
+  - `EDPProjSetup.msi`
+  - `setup.exe`
+- 📂 Output Location:  
+  `EDPProjSetup/Debug/`
+
+---
+
+### 📦 Inno Setup Installer
+
+- Built using **Inno Setup** with a custom script.
+- 📁 **Files Located in the Base Directory:**
+  - `SBR_EDP_Csharp_Installer_Final.iss` – Inno Setup script file  
+  - `SBR_EDP_Installer.exe` – Final compiled Inno Setup installer  
+  - `mysql-installer-community-8.0.42.0.msi` – MySQL installer  
+  - `setup_mysql.bat` – Batch file for silent MySQL setup and database import  
+  - `init_db.sql`, `SBRDB.sql` – SQL dump files for initializing database schema and data
+
+- The Inno Setup installer automates:
+  - Application installation
+  - Silent MySQL installation (if not already installed)
+  - Database initialization via SQL dump files
+
+📹 **Demo Video of the Working Installer**  
+[▶️ Watch on YouTube](https://youtu.be/tIzYXG6OYH4)
 
 ---
 
