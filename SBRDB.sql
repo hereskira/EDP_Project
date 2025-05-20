@@ -303,12 +303,12 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_available_copies` BEFORE INSERT ON `loans` FOR EACH ROW BEGIN
   DECLARE copies_available INT;
 
-  -- Get the current available copies of the book
+  
   SELECT available_copies INTO copies_available 
   FROM Books 
   WHERE book_id = NEW.book_id;
 
-  -- Prevent insertion if no copies are available
+  
   IF copies_available IS NULL OR copies_available <= 0 THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'No available copies for this book';
@@ -332,12 +332,12 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `decrease_available_copies` AFTER INSERT ON `loans` FOR EACH ROW BEGIN
   DECLARE current_copies INT;
 
-  -- Get the current available copies
+  
   SELECT available_copies INTO current_copies 
   FROM books 
   WHERE book_id = NEW.book_id;
 
-  -- Deduct only if there are available copies
+  
   IF current_copies > 0 THEN
     UPDATE books
     SET available_copies = current_copies - 1
@@ -359,7 +359,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `prevent_invalid_update` BEFORE UPDATE ON `loans` FOR EACH ROW BEGIN
-  -- Prevent update if changing to a book with no available copies
+  
   IF OLD.book_id != NEW.book_id AND 
      (SELECT available_copies FROM books WHERE book_id = NEW.book_id) <= 0 THEN
     SIGNAL SQLSTATE '45000'
@@ -381,14 +381,14 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_available_copies_after_loan_update` AFTER UPDATE ON `loans` FOR EACH ROW BEGIN
-  -- Only update if the book_id changes
+  
   IF OLD.book_id != NEW.book_id THEN
-    -- Return old book copy
+    
     UPDATE books
     SET available_copies = available_copies + 1
     WHERE book_id = OLD.book_id;
 
-    -- Deduct from new book
+    
     UPDATE books
     SET available_copies = available_copies - 1
     WHERE book_id = NEW.book_id;
@@ -409,7 +409,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `prevent_loan_deletion_if_unpaid` BEFORE DELETE ON `loans` FOR EACH ROW BEGIN
-  -- Prevent deletion if the loan is unpaid
+  
   IF OLD.is_paid = 0 THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Cannot delete an unpaid loan';
@@ -536,7 +536,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `username` (`username`),
   KEY `security_question` (`security_question`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`security_question`) REFERENCES `security_questions` (`question_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -545,7 +545,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','password','Shakira Regalado','shakiraregalado@gmail.com',NULL,1,'Fluffy'),(7,'kira','pass','Shakira','shakira@gmail.com',NULL,5,'Pink');
+INSERT INTO `users` VALUES (1,'admin','password','Shakira Regalado','shakiraregalado@gmail.com',NULL,1,'Fluffy'),(7,'kira','pass','Shakira','shakira@gmail.com',NULL,5,'Pink'),(8,'shakireg','pass','Shakira Regalado','admin@gmail.com',NULL,5,'Pink');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -566,13 +566,13 @@ DELIMITER ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
 /*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archive_old_loans` ON SCHEDULE AT '2025-04-03 11:04:23' ON COMPLETION PRESERVE DISABLE DO BEGIN
-  -- Move old paid loans (older than 1 year) to the archive table
+  
   INSERT INTO archived_loans (loan_id, member_id, book_id, employee_id, loan_date, due_date, is_paid, is_overdue)
   SELECT loan_id, member_id, book_id, employee_id, loan_date, due_date, is_paid, is_overdue
   FROM loans
   WHERE loan_date < NOW() - INTERVAL 1 YEAR AND is_paid = 1;
 
-  -- Delete archived loans from the original table
+  
   DELETE FROM loans
   WHERE loan_date < NOW() - INTERVAL 1 YEAR AND is_paid = 1;
 END */ ;;
@@ -594,7 +594,7 @@ DELIMITER ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
 /*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `backup_database` ON SCHEDULE AT '2025-04-03 10:08:27' ON COMPLETION PRESERVE DISABLE DO BEGIN
-  -- Runs a system command to back up the database
+  
   SET @cmd = 'mysqldump -u root -pmysqlkira libsys > /Users/shakiraregalado/dumps/libsys_backup.sql';
   DO sys_exec(@cmd);
 END */ ;;
@@ -764,18 +764,18 @@ BEGIN
     DECLARE book_title VARCHAR(255);
     DECLARE due_date DATE;
 
-    -- Declare the cursor to select members with overdue books
+    
     DECLARE cur CURSOR FOR 
         SELECT m.member_id, m.first_name, m.last_name, b.title, l.due_date
         FROM Loans l
         JOIN Members m ON l.member_id = m.member_id
         JOIN Books b ON l.book_id = b.book_id
-        WHERE l.is_paid = 0 AND l.due_date < CURDATE(); -- Only unpaid and overdue loans
+        WHERE l.is_paid = 0 AND l.due_date < CURDATE(); 
     
-    -- Declare a handler for when no more records are found
+    
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
     
-    -- Create a temporary table to store the results
+    
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_overdue_books (
         member_id INT,
         first_name VARCHAR(100),
@@ -789,22 +789,22 @@ BEGIN
     read_loop: LOOP
         FETCH cur INTO member_id, first_name, last_name, book_title, due_date;
         
-        -- Exit loop if no more records
+        
         IF done THEN
             LEAVE read_loop;
         END IF;
         
-        -- Insert the result into the temporary table
+        
         INSERT INTO temp_overdue_books (member_id, first_name, last_name, book_title, due_date)
         VALUES (member_id, first_name, last_name, book_title, due_date);
     END LOOP;
     
     CLOSE cur;
     
-    -- Now select all the results from the temporary table
+    
     SELECT * FROM temp_overdue_books;
     
-    -- Drop the temporary table after use
+    
     DROP TEMPORARY TABLE IF EXISTS temp_overdue_books;
 END ;;
 DELIMITER ;
@@ -834,10 +834,10 @@ BEGIN
     
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
-    -- Ensure the temporary table is deleted before recreating
+    
     DROP TEMPORARY TABLE IF EXISTS member_loans;
 
-    -- Create the temporary table
+    
     CREATE TEMPORARY TABLE member_loans (
         member_name VARCHAR(100),
         total_loaned_books INT
@@ -851,21 +851,21 @@ BEGIN
             LEAVE read_loop;
         END IF;
         
-        -- Use the stored functions
+        
         SET v_member_name = GetMemberFullName(v_member_id);
         SET v_books_loaned = GetTotalBooksLoaned(v_member_id);
         
-        -- Insert result into the temporary table
+        
         INSERT INTO member_loans (member_name, total_loaned_books)
         VALUES (v_member_name, v_books_loaned);
     END LOOP;
 
     CLOSE member_cursor;
 
-    -- Output all results
+    
     SELECT * FROM member_loans;
 
-    -- Optional: Drop the temporary table after outputting results
+    
     DROP TEMPORARY TABLE IF EXISTS member_loans;
 END ;;
 DELIMITER ;
@@ -885,12 +885,12 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MarkOverdueLoans`()
 BEGIN
-    -- Update the Loans table to mark as overdue only if the due date has passed and the loan is unpaid
+    
     UPDATE Loans
     SET is_overdue = 1
     WHERE is_paid = 0
-      AND due_date < CURDATE()  -- Check if the due date has passed
-      AND is_overdue = 0;  -- Only mark it as overdue if it's not already marked
+      AND due_date < CURDATE()  
+      AND is_overdue = 0;  
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -911,7 +911,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateBookAvailability`(IN p_book_i
 BEGIN
     UPDATE Books
     SET available_copies = new_available_copies
-    WHERE book_id = p_book_id;  -- Use the procedure parameter
+    WHERE book_id = p_book_id;  
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1039,4 +1039,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-10 23:35:55
+-- Dump completed on 2025-05-20 20:56:57

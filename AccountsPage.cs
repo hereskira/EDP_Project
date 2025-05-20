@@ -42,23 +42,37 @@ namespace EDP_Project
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            // Define the target directory relative to the application's base directory
-            string targetDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "reports");
+            // Define base directory
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Ensure the directory exists
-            if (!System.IO.Directory.Exists(targetDirectory))
+            // Path to the template in reportTemplate folder
+            string templateDir = System.IO.Path.Combine(baseDir, "reportTemplate");
+            string templatePath = System.IO.Path.Combine(templateDir, "userlist.xlsx");
+
+            // Ensure the template exists
+            if (!System.IO.File.Exists(templatePath))
             {
-                System.IO.Directory.CreateDirectory(targetDirectory);
+                MessageBox.Show("Excel template not found in reportTemplate folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            // Define the file name and combine it with the target directory
-            string filePath = System.IO.Path.Combine(targetDirectory, "userlist.xlsx");
+            // Path to the generatedreports folder
+            string generatedDir = System.IO.Path.Combine(baseDir, "generatedreports");
+            if (!System.IO.Directory.Exists(generatedDir))
+            {
+                System.IO.Directory.CreateDirectory(generatedDir);
+            }
 
-            // Log the file path
-            Console.WriteLine("Exporting to File Path: " + filePath);
+            // Generate filename with timestamp
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            string generatedFileName = $"report-{timestamp}.xlsx";
+            string generatedFilePath = System.IO.Path.Combine(generatedDir, generatedFileName);
 
-            // Call the method to export the data, providing the file path
-            ExportDataGridViewToExcelTemplate(AccountsData, filePath);
+            // Copy the template to the generatedreports folder with the new name
+            System.IO.File.Copy(templatePath, generatedFilePath, true);
+
+            // Export data to the copied file
+            ExportDataGridViewToExcelTemplate(AccountsData, generatedFilePath);
         }
 
         private void ExportDataGridViewToExcelTemplate(DataGridView dgv, string filePath)

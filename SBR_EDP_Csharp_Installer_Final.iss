@@ -49,8 +49,13 @@ Source: "setup_mysql.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "mysql-installer-community-8.0.42.0.msi"; DestDir: "{tmp}"; Flags: ignoreversion
 
 [Run]
+; Silent installation of MySQL
 Filename: "msiexec.exe"; Parameters: "/i ""{tmp}\mysql-installer-community-8.0.42.0.msi"" /qn /norestart"; Flags: runhidden waituntilterminated
+
+; Execute MySQL configuration and DB restoration
 Filename: "cmd.exe"; Parameters: "/C ""{app}\setup_mysql.bat"""; Flags: runhidden waituntilterminated
+
+; Launch the C# application
 Filename: "{app}\EDPProjSetup.msi"; Description: "Launch Application"; Flags: nowait postinstall skipifsilent
 
 [Icons]

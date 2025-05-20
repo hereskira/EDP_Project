@@ -9,7 +9,7 @@ echo Setting root password and user privileges...
 %MYSQL_PATH% -u root --connect-expired-password < "%~dp0init_db.sql"
 
 echo Restoring MABDemoDB.sql into libsys...
-%MYSQL_PATH% -u root -pmysqlkira libsys < "%~dp0MABDemoDB.sql"
+%MYSQL_PATH% -u root -pmike libsys < "%~dp0SBRDB.sql"
 
 echo MySQL setup and database restoration complete.
 pause
